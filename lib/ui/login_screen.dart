@@ -9,6 +9,7 @@ import 'package:third_year_project/ui/registration_screen.dart';
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
 import 'home_screen.dart';
+import 'navigation_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
         Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => HomeScreen()));
+            context, CupertinoPageRoute(builder: (_) => NavigationButton()));
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
@@ -63,17 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     Lottie.network(
                         'https://assets4.lottiefiles.com/private_files/lf30_kj1v7uim.json',
                         height: 140),
-                    /*IconButton(
-                      onPressed: null,
-                      icon: Icon(
-                        Icons.light,
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    Text(
-                      "Sign In",
-                      style: TextStyle(fontSize: 22.sp, color: Colors.white),
-                    ),*/
                   ],
                 ),
               ),
