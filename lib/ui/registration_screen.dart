@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/user_form.dart';
 import '../contest/AppColors.dart';
 import 'login_screen.dart';
+import 'package:email_auth/email_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -14,9 +15,41 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _otpController = TextEditingController();
   bool _obscureText = true;
+
+
+  //EmailAuth emailAuth =  new EmailAuth(sessionName: "Sample session");
+
+
+  //get emailAuth => null;
+   //late EmailAuth emailAuth;
+
+  /*void sendOTP() async {
+    var res = await emailAuth.sendOtp(
+        recipientMail: _emailController.value.text, otpLength: 5
+    );
+    if(res){
+      print("OTP sent");
+    }
+    else("We could not sent the otp");
+  }
+
+  void verifyOtp() {
+    var res = emailAuth.validateOtp(
+        recipientMail: _emailController.text,
+        userOtp: _otpController.text);
+    if(res){
+      print("OTP verified");
+
+    }
+    else{
+      print("Invalid OTP");
+    }
+  }*/
 
   signUp() async {
     try {
@@ -141,6 +174,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     color: Color(0xFFBBBBBB),
                                   ),
                                   labelText: 'EMAIL',
+
+                                 /* suffixIcon: TextButton(
+                                    child: Text("send otp"),
+                                    onPressed: () => sendOTP(),
+                                  ),*/
                                   labelStyle: TextStyle(
                                     fontSize: 15.sp,
                                     color: AppColors.deep_orange,
@@ -219,6 +257,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         SizedBox(
                           height: 50.h,
                         ),
+
+
+
+                        /*TextField(
+                          controller: _otpController,
+                          keyboardType: TextInputType.number,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Enter Otp",
+                            labelText: "Otp",
+                          ),
+
+
+                        ),
+
+                        SizedBox(
+                          height: 50.0,
+                        ),*/
+
+
+
                         // elevated button
                         SizedBox(
                           width: 1.sw,
@@ -227,6 +286,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             onPressed: () {
                               signUp();
                             },
+
+
+
                             child: Text(
                               "Continue",
                               style: TextStyle(
@@ -235,16 +297,38 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             style: ElevatedButton.styleFrom(
                               primary: AppColors.deep_orange,
                               elevation: 3,
+
                             ),
+                          //  onLongPress: () => verifyOTP(),
                           ),
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: 30.h,
                         ),
+
+
+                        /*TextField(
+                          controller: _otpController,
+                          keyboardType: TextInputType.number,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Enter Otp",
+                            labelText: "Otp",
+                          ),
+
+
+                        ),
+
+                        SizedBox(
+                          height: 50.0,
+                        ),*/
+
+
+
                         Wrap(
                           children: [
                             Text(
-                              "Don't have an account?",
+                              "You have an account?",
                               style: TextStyle(
                                 fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
