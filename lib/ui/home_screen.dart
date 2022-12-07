@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.deep_orange,
-        title: Text('Category'),
+        title: Text('Cetagory'),
         centerTitle: true,
         automaticallyImplyLeading: false,
 

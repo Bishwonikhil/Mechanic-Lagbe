@@ -58,7 +58,3 @@ final kLightTheme = ThemeData(
     displayColor: kDarkSecondaryColor,
   ),
 );
-
-
-
-

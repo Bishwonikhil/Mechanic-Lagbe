@@ -8,8 +8,6 @@ import 'package:third_year_project/ui/forgot_pw.dart';
 import 'package:third_year_project/ui/registration_screen.dart';
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
-import 'home_screen.dart';
-import 'login_page.dart';
 import 'navigation_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -272,8 +270,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context,
                                     CupertinoPageRoute(
                                         builder: (context) =>
-                                            //RegistrationScreen()));
-                                        LoginPage()));
+                                            RegistrationScreen()));
                               },
                             )
                           ],

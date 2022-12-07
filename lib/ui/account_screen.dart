@@ -15,20 +15,7 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    //ScreenUtil.init(context, height: 896, width: 414, allowFontScalling: true);
-    // return Scaffold(
-    //     body: Column(children: <Widget>[
-    //   SizedBox(height: kSpacingUnit.w * 5),
-    //   Row(
-    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: <Widget>[
-    //       SizedBox(width: kSpacingUnit.w * 3),
-    //       Icon(LineAwesomeIcons.arrow_left,
-    //           size: ScreenUtil().setSp(kSpacingUnit.w * 3)
-    //       ),
-
-   var profileInfo = Expanded(
+    var profileInfo = Expanded(
       child: Column(
         children: [
           Container(
@@ -39,7 +26,8 @@ class _AccountScreenState extends State<AccountScreen> {
               children: [
                 CircleAvatar(
                   radius: kSpacingUnit.w * 5,
-                  backgroundImage: AssetImage('fonts/images/avatar.png'),
+                  backgroundImage: NetworkImage(
+                      "https://imageio.forbes.com/specials-images/imageserve/627bd4c60412e4343323ad21/0x0.jpg?format=jpg&crop=1478,1478,x467,y0,safe&height=416&width=416&fit=bounds"),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -47,7 +35,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     height: kSpacingUnit.w * 2.5,
                     width: kSpacingUnit.w * 2.5,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      //color: Theme.of(context).accentColor,
+                      color: Colors.redAccent,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -61,16 +50,17 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ),
           SizedBox(height: kSpacingUnit.w * 2),
-          Text('Sumon', style: kTitleTextStyle),
+          Text('Lionel Messi', style: kTitleTextStyle),
           SizedBox(height: kSpacingUnit.w * 0.5),
-          Text('sumonatikul@gmail.com', style: kCaptionTextStyle),
+          Text('messilm10@gmail.com', style: kCaptionTextStyle),
           SizedBox(height: kSpacingUnit.w * 2),
           Container(
             height: kSpacingUnit.w * 4,
             width: kSpacingUnit.w * 20,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(kSpacingUnit.w * 3),
-              color: Theme.of(context).accentColor,
+              //color: Theme.of(context).accentColor,
+              color: Colors.deepOrangeAccent
             ),
             child: Center(
               child: Text(
@@ -86,116 +76,104 @@ class _AccountScreenState extends State<AccountScreen> {
     // return Scaffold(
     //     body: Column(children: <Widget>[
     //   SizedBox(height: kSpacingUnit.w * 5),
-        var header = Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(width: kSpacingUnit.w * 3),
-          Icon(LineAwesomeIcons.arrow_left,
-              size: ScreenUtil().setSp(kSpacingUnit.w * 3)
-          ),
-          profileInfo,
-          Icon(
-              LineAwesomeIcons.sun,
-              size: ScreenUtil().setSp(kSpacingUnit.w * 3)
-          ),
-          SizedBox(width: kSpacingUnit.w * 3),
-        ],
-      );
-   return Scaffold(
-     body: Column(children: <Widget>[
-       SizedBox(height: kSpacingUnit.w * 5),
-       header,
-       //AccountListItem(),
-         Expanded(
-         child: ListView(
-           children: <Widget>[
-            ProfileListItem(
-           //AccountListItem(),
-                icon: LineAwesomeIcons.user_shield,
-                text: 'Privacy',
-                hasNavigation: true,
-              ),
-           ProfileListItem(
-             //AccountListItem(),
-             icon: LineAwesomeIcons.history,
-             text: 'Purchase History',
-             hasNavigation: true,
-           ),
-             ProfileListItem(
-               //AccountListItem(),
-               icon: LineAwesomeIcons.question_circle,
-               text: 'Help & Support',
-               hasNavigation: true,
-             ),
-             ProfileListItem(
-               //AccountListItem(),
-               icon: LineAwesomeIcons.user_plus,
-               text: 'Invite Friend',
-               hasNavigation: true,
-             ),
-             ProfileListItem(
-               //AccountListItem(),
-               icon: LineAwesomeIcons.alternate_sign_out,
-               text: 'Logout',
-               hasNavigation: true,
-             ),
-
-           ],
-         ),
-       ),
-
-    ],
-    ),
+    var header = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(width: kSpacingUnit.w * 3),
+        Icon(LineAwesomeIcons.arrow_left,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3)),
+        profileInfo,
+        Icon(LineAwesomeIcons.sun,
+            size: ScreenUtil().setSp(kSpacingUnit.w * 3)),
+        SizedBox(width: kSpacingUnit.w * 3),
+      ],
     );
-
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: kSpacingUnit.w * 5),
+          header,
+          //AccountListItem(),
+          Expanded(
+            child: ListView(
+              children: const <Widget>[
+                ProfileListItem(
+                  //AccountListItem(),
+                  icon: LineAwesomeIcons.user_shield,
+                  text: 'Privacy',
+                  hasNavigation: true,
+                ),
+                ProfileListItem(
+                  //AccountListItem(),
+                  icon: LineAwesomeIcons.lock,
+                  text: 'Change Password',
+                  hasNavigation: true,
+                ),
+                ProfileListItem(
+                  //AccountListItem(),
+                  icon: LineAwesomeIcons.question_circle,
+                  text: 'Help & Support',
+                  hasNavigation: true,
+                ),
+                ProfileListItem(
+                  //AccountListItem(),
+                  icon: LineAwesomeIcons.user_plus,
+                  text: 'Invite Friend',
+                  hasNavigation: true,
+                ),
+                ProfileListItem(
+                  //AccountListItem(),
+                  icon: LineAwesomeIcons.alternate_sign_out,
+                  text: 'Logout',
+                  hasNavigation: true,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
-
 
 class ProfileListItem extends StatelessWidget {
   final IconData icon;
   final text;
   final bool hasNavigation;
 
-
   const ProfileListItem({
     Key? key,
     required this.icon,
     this.text,
     required this.hasNavigation,
-
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: kSpacingUnit.w * 5.5,
-      margin: EdgeInsets.symmetric(
-          horizontal: kSpacingUnit.w * 4
-      ).copyWith(
-          bottom: kSpacingUnit.w * 2
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: kSpacingUnit.w * 2
-      ),
+      margin: EdgeInsets.symmetric(horizontal: kSpacingUnit.w * 4)
+          .copyWith(bottom: kSpacingUnit.w * 2),
+      padding: EdgeInsets.symmetric(horizontal: kSpacingUnit.w * 2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(kSpacingUnit.w * 3),
-        color: Theme
-            .of(context)
-            .backgroundColor,
+        //color: Theme.of(context).backgroundColor,
+        color: AppColors.deep_orange,
       ),
       child: Row(
         children: <Widget>[
-          Icon(this.icon, size: kSpacingUnit.w * 2.5,
+          Icon(
+            this.icon,
+            size: kSpacingUnit.w * 2.5,
           ),
           SizedBox(width: kSpacingUnit.w * 2.5),
-          Text(this.text,
-            style: kTitleTextStyle.copyWith(fontWeight: FontWeight.w500
-            ),
+          Text(
+            this.text,
+            style: kTitleTextStyle.copyWith(fontWeight: FontWeight.w500),
           ),
           Spacer(),
-          if(this.hasNavigation)
+          if (this.hasNavigation)
             Icon(
               //this.icon,
               LineAwesomeIcons.angle_right,
