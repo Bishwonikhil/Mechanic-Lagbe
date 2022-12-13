@@ -1,7 +1,15 @@
-
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:third_year_project/contest/AppColors.dart';
+
+//import 'package:third_year_project/ui/rating_page.dart';
+import 'package:third_year_project/ui/rating_screen.dart';
+import 'package:third_year_project/ui/ui/share_app.dart';
+
+import 'contact.dart';
+import 'contactus.dart';
+import 'help_info.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -35,7 +43,12 @@ class _MoreScreenState extends State<MoreScreen> {
               buildAcountOption(context, 'Privacy Policy'),*/
 
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => HelpInfo()));
+                },
                 child: Padding(
                   padding:
                   const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -57,7 +70,13 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                //onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) =>RatingPage()));
+                },
                 child: Padding(
                   padding:
                   const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -79,7 +98,16 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                //onTap: () {},
+                onTap: () {
+                  // Navigator.push(
+                  //     context,
+                  //     CupertinoPageRoute(
+                  //         builder: (context) => ShareApp()));
+
+                    Share.share("com.example.third_year_project");
+
+                },
                 child: Padding(
                   padding:
                   const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -102,7 +130,13 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                // onTap: () {
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => Contact()));
+                },
                 child: Padding(
                   padding:
                   const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -115,6 +149,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
+
                       /*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,
