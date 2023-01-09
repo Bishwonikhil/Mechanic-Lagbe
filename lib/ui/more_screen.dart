@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:third_year_project/contest/AppColors.dart';
 
-//import 'package:third_year_project/ui/rating_page.dart';
+import 'package:flutter/material.dart';
+import 'package:third_year_project/contest/AppColors.dart';
 import 'package:third_year_project/ui/rating_screen.dart';
-import 'package:third_year_project/ui/ui/share_app.dart';
 
 import 'contact.dart';
-import 'contactus.dart';
+//import 'contactus.dart';
 import 'help_info.dart';
 
 class MoreScreen extends StatefulWidget {
@@ -70,12 +70,11 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                //onTap: () {},
                 onTap: () {
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
-                          builder: (context) =>RatingPage()));
+                          builder: (context) => RatingPage()));
                 },
                 child: Padding(
                   padding:
@@ -98,15 +97,8 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                //onTap: () {},
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     CupertinoPageRoute(
-                  //         builder: (context) => ShareApp()));
-
-                    Share.share("com.example.third_year_project");
-
+                  Share.share("com.example.third_year_project");
                 },
                 child: Padding(
                   padding:
@@ -130,7 +122,6 @@ class _MoreScreenState extends State<MoreScreen> {
                 ),
               ),
               GestureDetector(
-                // onTap: () {
                 onTap: () {
                   Navigator.push(
                       context,
@@ -149,7 +140,6 @@ class _MoreScreenState extends State<MoreScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-
                       /*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,

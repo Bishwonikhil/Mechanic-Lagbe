@@ -23,7 +23,7 @@ class _RatingPageState extends State<RatingPage>
     remindLaunches: 2, //0,
     remindDays: 0,
     //googlePlayIdentifier: "com.googlechrome",
-     googlePlayIdentifier: "com.example.third_year_project",
+    googlePlayIdentifier: "com.example.third_year_project",
   );
   @override
   void initState(){
@@ -35,95 +35,95 @@ class _RatingPageState extends State<RatingPage>
       });
 
 
-       if(rateMyApp.shouldOpenDialog) {
-         rateMyApp.showStarRateDialog(
+      if(rateMyApp.shouldOpenDialog) {
+        rateMyApp.showStarRateDialog(
 
-           context,
-           title: 'Rate this app',
-           message:'you like this app? Then take a little bit of your time to leave a rating',
+          context,
+          title: 'Rate this app',
+          message:'you like this app? Then take a little bit of your time to leave a rating',
 
-           actionsBuilder: (context, stars){
-             return[
-               TextButton(
-                   child: const Text('ok'),
-                   onPressed: () async {
-                     stars = stars?? 0;
-                     print("Thank you for the: ${stars.toString()} stars rating");
+          actionsBuilder: (context, stars){
+            return[
+              TextButton(
+                child: const Text('ok'),
+                onPressed: () async {
+                  stars = stars?? 0;
+                  print("Thank you for the: ${stars.toString()} stars rating");
 
-                     if(stars!<4){
-                       print("would you like to leave feedback");
+                  if(stars!<4){
+                    print("would you like to leave feedback");
 
-                     }
-                     else{
-                       Navigator.pop<RateMyAppDialogButton>(context, RateMyAppDialogButton.rate);
-                       await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);
-                       if((await rateMyApp.isNativeReviewDialogSupported) ??
-                       false){
-                         await rateMyApp.launchNativeReviewDialog();
-                       }
-                       rateMyApp.launchStore();
+                  }
+                  else{
+                    Navigator.pop<RateMyAppDialogButton>(context, RateMyAppDialogButton.rate);
+                    await rateMyApp.callEvent(RateMyAppEventType.rateButtonPressed);
+                    if((await rateMyApp.isNativeReviewDialogSupported) ??
+                        false){
+                      await rateMyApp.launchNativeReviewDialog();
+                    }
+                    rateMyApp.launchStore();
 
-                     }
-                   },
-               ),
+                  }
+                },
+              ),
 
-             ];
-         },
-           ignoreNativeDialog: true,
-           dialogStyle: const DialogStyle(
-           titleAlign: TextAlign.center,
-           messageAlign: TextAlign.center,
-           messagePadding: EdgeInsets.only(bottom: 20),
-         ),
+            ];
+          },
+          ignoreNativeDialog: true,
+          dialogStyle: const DialogStyle(
+            titleAlign: TextAlign.center,
+            messageAlign: TextAlign.center,
+            messagePadding: EdgeInsets.only(bottom: 20),
+          ),
 
-         starRatingOptions:
-      const StarRatingOptions(),
-      onDismissed: ()  => rateMyApp.callEvent(RateMyAppEventType
-      .laterButtonPressed),
-         );
-    }
+          starRatingOptions:
+          const StarRatingOptions(),
+          onDismissed: ()  => rateMyApp.callEvent(RateMyAppEventType
+              .laterButtonPressed),
+        );
+      }
     });
 
-         super.initState();
+    super.initState();
 //   }
- }
+  }
 
 
-         //   rateMyApp.showRateDialog(
-         //     context,
-         //     title: 'Rate this app',
-         //     message: 'If you like this app, please take a little bit',
-         //     rateButton: 'Rate',
-         //     noButton: 'NO THANKS',
-         //     laterButton: 'MAYBE LATER',
-         //     dialogStyle: const DialogStyle(
-         //       titleStyle:
-         //         TextStyle(color: Colors.redAccent)),
-         //
-         //     listener:(button){
-         //       switch(button){
-         //         case RateMyAppDialogButton.rate:
-         //           print('Clicked on "Rate".');
-         //           break;
-         //         case RateMyAppDialogButton.later:
-         //           print('Clicked on "Later".');
-         //           break;
-         //         case RateMyAppDialogButton.no:
-         //           print('Clicked on "No".');
-         //           break;
-         //
-         //       }
-         //
-         //       return true,
+  //   rateMyApp.showRateDialog(
+  //     context,
+  //     title: 'Rate this app',
+  //     message: 'If you like this app, please take a little bit',
+  //     rateButton: 'Rate',
+  //     noButton: 'NO THANKS',
+  //     laterButton: 'MAYBE LATER',
+  //     dialogStyle: const DialogStyle(
+  //       titleStyle:
+  //         TextStyle(color: Colors.redAccent)),
+  //
+  //     listener:(button){
+  //       switch(button){
+  //         case RateMyAppDialogButton.rate:
+  //           print('Clicked on "Rate".');
+  //           break;
+  //         case RateMyAppDialogButton.later:
+  //           print('Clicked on "Later".');
+  //           break;
+  //         case RateMyAppDialogButton.no:
+  //           print('Clicked on "No".');
+  //           break;
+  //
+  //       }
+  //
+  //       return true,
 
 
 
 
-    //       ignoreNativeDialog: Platform.isAndroid,
-    //       //ignoreNativeDialog: true,
-    //       onDismissed: () =>
-    //           rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed),
-    //     );
+  //       ignoreNativeDialog: Platform.isAndroid,
+  //       //ignoreNativeDialog: true,
+  //       onDismissed: () =>
+  //           rateMyApp.callEvent(RateMyAppEventType.laterButtonPressed),
+  //     );
 //        }
 //      });
 //
@@ -132,19 +132,17 @@ class _RatingPageState extends State<RatingPage>
 
 
 
-@override
+  @override
   Widget build(BuildContext context){
 
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
-        "Rate my app",
-    ),
-    backgroundColor: AppColors.deep_orange,
-    automaticallyImplyLeading: false,
-    centerTitle: true,
-    ),);
- }
+          "Rate my app",
+        ),
+        backgroundColor: AppColors.deep_orange,
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+      ),);
+  }
 }
-
-
