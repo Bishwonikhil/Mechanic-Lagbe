@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_maps_webservice/places.dart';
 import 'package:third_year_project/contest/AppColors.dart';
-import 'package:uuid/uuid.dart';
 
 class SearchArea extends StatefulWidget {
   const SearchArea({Key? key}) : super(key: key);
@@ -16,6 +18,20 @@ class SearchArea extends StatefulWidget {
 
 class _SearchAreaState extends State<SearchArea> {
   String? _mapStyle;
+  //final Completer<GoogleMapController> _controler = Completer();
+
+  static const CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(24.8949, 91.8687),
+    zoom: 14.4746,
+  );
+
+  /*final List<Marker> _markers = <Marker>[
+    Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(24.8949, 91.8687),
+      infoWindow: InfoWindow(title: 'The title of the marker'),
+    )
+  ];*/
 
   @override
   void initState() {
@@ -26,11 +42,6 @@ class _SearchAreaState extends State<SearchArea> {
     });
   }
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
   GoogleMapController? myMapController;
 
   @override
@@ -39,26 +50,25 @@ class _SearchAreaState extends State<SearchArea> {
       body: Stack(
         children: [
           Positioned(
-            top: 150,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: GoogleMap(
-              //mapType: MapType.terrain,
-              zoomControlsEnabled: false,
+            child: SafeArea(
+              child: GoogleMap(
+                //mapType: MapType.satellite,
+                zoomControlsEnabled: false,
+                //markers: Set<Marker>.of(_markers),
 
-              onMapCreated: (GoogleMapController controller) {
-                myMapController = controller;
-                myMapController!.setMapStyle(_mapStyle);
-              },
-              initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  myMapController = controller;
+                  myMapController!.setMapStyle(_mapStyle);
+                },
+                initialCameraPosition: _kGooglePlex,
+              ),
             ),
           ),
           buildProfileTitle(),
           buildTextFeild(),
-          buildCurrentLocationIcon(),
-          buildNotificationIcon(),
-          buildBottomSheet(),
+          //buildCurrentLocationIcon(),
+          //buildNotificationIcon(),
+          //buildBottomSheet(),
         ],
       ),
     );
@@ -103,7 +113,8 @@ class _SearchAreaState extends State<SearchArea> {
                     ],
                   ),
                 ),
-                Text('Where are your location?',
+                Text(
+                  'Where are your location?',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                 ),
               ],
@@ -121,17 +132,18 @@ class _SearchAreaState extends State<SearchArea> {
       offset: 0,
       radius: 1000,
       strictbounds: false,
-      region: "fr",
+      region: "us",
       language: "en",
       context: context,
       mode: Mode.overlay,
       apiKey: kGoogleApiKey,
-      components: [new Component(Component.country, "fr")],
+      components: [new Component(Component.country, "us")],
       types: ["(cities)"],
-      hint: "Search Area",);
+      hint: "Search Area",
+    );
   }
 
-  Widget buildTextFeild(){
+  Widget buildTextFeild() {
     return Positioned(
       top: 165,
       left: 20,
@@ -167,30 +179,37 @@ class _SearchAreaState extends State<SearchArea> {
             ),
             suffixIcon: Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Icon(
-                Icons.search
-              ),
+              child: Icon(Icons.search),
             ),
             border: InputBorder.none,
           ),
-
         ),
       ),
     );
   }
 
-  Widget buildCurrentLocationIcon(){
+  /*Future<Position> getUserCurrentLocation() async {
+    await Geolocator.requestPermission()
+        .then((value) {})
+        .onError((error, stackTrace) {
+      print("Error" + error.toString());
+    });
+    return await Geolocator.getCurrentPosition();
+  }*/
+
+  /*Widget buildCurrentLocationIcon() {
     return Align(
       alignment: Alignment.bottomRight,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 30,right: 10),
+        padding: const EdgeInsets.only(bottom: 30, right: 10),
         child: CircleAvatar(
-          radius: 20,
           backgroundColor: Colors.white,
-          child: Icon(Icons.my_location,color: Colors.black,),
+          child: Icon(
+            Icons.my_location,
+            color: Colors.black,
+          ),
         ),
       ),
-
     );
   }
 
@@ -198,26 +217,30 @@ class _SearchAreaState extends State<SearchArea> {
     return Align(
       alignment: Alignment.bottomLeft,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 30,left: 10),
+        padding: const EdgeInsets.only(bottom: 30, left: 10),
         child: CircleAvatar(
           backgroundColor: Colors.white,
-          child: Icon(Icons.notifications,color: Colors.black,),
+          child: Icon(
+            Icons.notifications,
+            color: Colors.black,
+          ),
         ),
       ),
     );
   }
 
-  Widget buildBottomSheet(){
+  Widget buildBottomSheet() {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        width: Get.width*0.8,
+        width: Get.width * 0.8,
         height: 20,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         ),
       ),
     );
-  }
+  }*/
 }

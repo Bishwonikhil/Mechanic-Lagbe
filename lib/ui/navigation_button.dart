@@ -3,6 +3,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:third_year_project/ui/account_screen.dart';
 import 'package:third_year_project/ui/home_screen.dart';
 import 'package:third_year_project/ui/more_screen.dart';
+import 'package:third_year_project/ui/profile_screen.dart';
 import 'package:third_year_project/ui/setting_screen.dart';
 
 class NavigationButton extends StatefulWidget {
@@ -19,7 +20,7 @@ class _NavigationButtonState extends State<NavigationButton> {
     HomeScreen(),
     SettingScreen(),
     MoreScreen(),
-    AccountScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
