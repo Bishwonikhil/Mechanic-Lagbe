@@ -9,6 +9,7 @@ import 'package:share/share.dart';
 import 'package:third_year_project/ui/login_screen.dart';
 import 'package:third_year_project/ui/payment.dart';
 import '../contest/AppColors.dart';
+import 'change_password.dart';
 import 'constants.dart';
 import 'forgot_pw.dart';
 import 'help_info.dart';
@@ -130,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: "Payment",
                 icon: LineAwesomeIcons.hand_holding_us_dollar,
                 onPress: () {
-                  Navigator.push(context, CupertinoPageRoute(builder: (context) => makePayment()));
+                  //Navigator.push(context, CupertinoPageRoute(builder: (context) => makePayment()));
                 },
                 //onPress: () => obj.makePayment(amount: '5', currency: 'USD'),
               ),
@@ -152,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => ForgotPasswordPage()));
+                            builder: (context) => Change_Password()));
                   }),
               ProfileMenuWidget(
                   title: "Invite Friend",
