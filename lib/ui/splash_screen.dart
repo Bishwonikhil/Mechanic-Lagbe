@@ -7,6 +7,8 @@ import 'package:third_year_project/contest/AppColors.dart';
 import 'package:third_year_project/ui/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'decision.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();

@@ -62,7 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Lottie.network(
                         'https://assets4.lottiefiles.com/private_files/lf30_kj1v7uim.json',
-                        height: 140),
+                        //height: ScreenUtil().scaleHeight,
+                       // fit: BoxFit.fill,
+                      height: 140
+                    ),
                   ],
                 ),
               ),

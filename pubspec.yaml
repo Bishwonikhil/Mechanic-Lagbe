@@ -58,6 +58,8 @@ dependencies:
   image_picker: ^0.8.6
   path_provider: ^2.0.11
   location: ^4.4.0
+  custom_info_window: ^1.0.1
+
 
 
 
@@ -104,7 +106,12 @@ flutter:
     - assets/images/Bus.jpg
     - assets/images/car.webp
     - assets/images/CNG.webp
+    - assets/images/Mechanic.webp
     - assets/images/Truc.jpg
+    - assets/images/mechanic.png
+    - assets/images/standing-up-man-.png
+    - assets/images/Profile.png
+    - assets/images/account.png
     - assets/map_style
 
   # An image asset can refer to one or more resolution-specific "variants", see
