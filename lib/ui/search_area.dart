@@ -1,175 +1,3 @@
-/*
-import 'dart:async';
-import 'dart:typed_data';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart' as loc;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:ui' as ui;
-
-class SearchArea extends StatefulWidget {
-  const SearchArea({Key? key}) : super(key: key);
-
-  @override
-  State<SearchArea> createState() => _SearchAreaState();
-}
-
-class _SearchAreaState extends State<SearchArea> {
-  final loc.Location location = loc.Location();
-  bool isIconSelected = false;
-  bool _added = false;
-  StreamSubscription<loc.LocationData>? _locationSub;
-  late GoogleMapController _controller;
-
-  Uint8List? userLocationIcon;
-  Uint8List? busLocationIcon;
-  CameraPosition? userCameraPosition;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getMarkers();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-    _locationSub!.cancel();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    //var pro = Provider.of<MapProvider>(context, listen: false);
-    return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("Car").snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(child: Text("Something went wrong"));
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          }
-
-          final data = snapshot.data;
-
-          if (data != null && data.docs.isEmpty) {
-            return const SizedBox();
-          } else {
-            return isIconSelected
-                ? buildGoogleMap(snapshot)
-                : CircularProgressIndicator();
-          }
-        },
-      ),
-    );
-  }
-
-  GoogleMap buildGoogleMap(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
-    print("----------------------------------");
-    return GoogleMap(
-      myLocationEnabled: true,
-      myLocationButtonEnabled: true,
-      zoomGesturesEnabled: true,
-      zoomControlsEnabled: true,
-      onCameraMove: (CameraPosition cameraPosition) {
-        userCameraPosition = cameraPosition;
-      },
-      initialCameraPosition: CameraPosition(
-        target: const LatLng(24.89489077447926, 91.86879280019157),
-        zoom: 15,
-      ),
-      mapType: MapType.normal,
-      markers: Set<Marker>.of(
-        snapshot.data!.docs.map(
-              (element) {
-            return Marker(
-              position: LatLng(element['Latitude'], element['Longitude']),
-              markerId: MarkerId(element.id),
-              *//*infoWindow: const InfoWindow(
-                title: "Route 1",
-              ),*//*
-              icon: BitmapDescriptor.fromBytes(busLocationIcon!),
-            );
-          },
-        ),
-      ),
-      onMapCreated: (GoogleMapController controller) async {
-        if (!_added) {
-          _controller = controller;
-          _added = true;
-          //_onUserLocationChange(pro);
-        }
-      },
-    );
-  }
-
-
-*//* Future<void> changeMyMap(MapProvider pro) async {
-    await _controller.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: userCameraPosition == null
-              ? pro.userLocation == null
-              ? const LatLng(24.89489077447926, 91.86879280019157)
-              : LatLng(
-              pro.userLocation!.latitude!, pro.userLocation!.longitude!)
-              : userCameraPosition!.target,
-          zoom: userCameraPosition == null ? 15 : userCameraPosition!.zoom,
-          tilt: userCameraPosition == null ? 0 : userCameraPosition!.tilt,
-          bearing: userCameraPosition == null ? 0 : userCameraPosition!.bearing,
-        ),
-      ),
-    );
-  }*//*
-
-
-  getMarkers() async {
-    userLocationIcon = await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
-    busLocationIcon = await getBytesFromAssets("assets/images/mechanic.png", 150);
-
-    if (userLocationIcon != null && busLocationIcon != null) {
-      setState(() {
-        isIconSelected = true;
-      });
-    } else {
-      //return snackBar(context, "Something Went Wrong");
-    }
-  }
-
-*//* Future<void> _onUserLocationChange(MapProvider pro) async {
-    _locationSub = location.onLocationChanged.handleError((onError) {
-      _locationSub!.cancel();
-      setState(() {
-        _locationSub = null;
-      });
-    }).listen((loc.LocationData currentLocation) async {
-      pro.userLocation = currentLocation;
-      if (mounted) {
-        Provider.of<MapProvider>(context, listen: false).onLocationChange();
-      }
-
-      changeMyMap(pro);
-    });
-  }*//*
-
-
-  Future<Uint8List> getBytesFromAssets(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
-    ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
-}*/
-
-
-
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -203,7 +31,7 @@ class _SearchAreaState extends State<SearchArea> {
   CameraPosition? userCameraPosition;
 
   CustomInfoWindowController _customInfoWindowController =
-      CustomInfoWindowController();
+  CustomInfoWindowController();
 
   @override
   void initState() {
@@ -272,19 +100,17 @@ class _SearchAreaState extends State<SearchArea> {
       mapType: MapType.terrain,
       markers: Set<Marker>.of(
         snapshot.data!.docs.map(
-          (element) {
+              (element) {
             return Marker(
-                position: LatLng(element['Latitude'], element['Longitude']),
+                position: LatLng(element['lati'], element['long']),
                 markerId: MarkerId(element.id),
-                infoWindow: InfoWindow(
-                  title: element['Name'],
-                ),
+                
                 icon: BitmapDescriptor.fromBytes(mechanicLocationIcon!),
                 onTap: () {
                   openDialog();
                 }
 
-                 /*_customInfoWindowController.addInfoWindow!(
+              /*_customInfoWindowController.addInfoWindow!(
                   Container(
                     height: 200,
                     width: 200,
@@ -294,7 +120,7 @@ class _SearchAreaState extends State<SearchArea> {
                 );
               }*/
 
-                );
+            );
           },
         ),
       ),
@@ -313,7 +139,7 @@ class _SearchAreaState extends State<SearchArea> {
     );
   }
 
-   /*Future<void> changeMyMap(MapProvider pro) async {
+  /*Future<void> changeMyMap(MapProvider pro) async {
     await _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
@@ -333,9 +159,9 @@ class _SearchAreaState extends State<SearchArea> {
 
   getMarkers() async {
     userLocationIcon =
-        await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
+    await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
     mechanicLocationIcon =
-        await getBytesFromAssets("assets/images/mechanic.png", 150);
+    await getBytesFromAssets("assets/images/mechanic.png", 150);
 
     if (userLocationIcon != null && mechanicLocationIcon != null) {
       setState(() {
@@ -346,7 +172,7 @@ class _SearchAreaState extends State<SearchArea> {
     }
   }
 
- /*Future<void> _onUserLocationChange(MapProvider pro) async {
+  /*Future<void> _onUserLocationChange(MapProvider pro) async {
     _locationSub = location.onLocationChanged.handleError((onError) {
       _locationSub!.cancel();
       setState(() {
@@ -357,37 +183,36 @@ class _SearchAreaState extends State<SearchArea> {
       if (mounted) {
         Provider.of<MapProvider>(context, listen: false).onLocationChange();
       }
-
       changeMyMap(pro);
     });
   }*/
 
   Future openDialog() => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          //contentPadding: EdgeInsets.all(30),
-          title: Text(
-            'Mechanic Profile',
-            style: TextStyle(fontSize: 16, fontFamily: 'TitanOne'),
-          ),
-          content: Container(
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  child: Image.asset('assets/images/account.png'),
-                  radius: 20,
-                  backgroundColor: Colors.white,
-                ),
-                //SizedBox(width: 5,),
-              ],
-            ),
-          ),
+    context: context,
+    builder: (context) => AlertDialog(
+      //contentPadding: EdgeInsets.all(30),
+      title: Text(
+        'Mechanic Profile',
+        style: TextStyle(fontSize: 16, fontFamily: 'TitanOne'),
+      ),
+      content: Container(
+        height: 30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
         ),
-      );
+        child: Row(
+          children: [
+            CircleAvatar(
+              child: Image.asset('assets/images/account.png'),
+              radius: 20,
+              backgroundColor: Colors.white,
+            ),
+            //SizedBox(width: 5,),
+          ],
+        ),
+      ),
+    ),
+  );
 
   Future<Uint8List> getBytesFromAssets(String path, int height) async {
     ByteData data = await rootBundle.load(path);
