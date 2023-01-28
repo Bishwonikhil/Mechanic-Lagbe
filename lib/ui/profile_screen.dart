@@ -8,7 +8,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:share/share.dart';
 import 'package:third_year_project/ui/login_screen.dart';
 import 'package:third_year_project/ui/payment.dart';
-import 'package:third_year_project/ui/privacy_policy.dart';
+//import 'package:third_year_project/ui/privacy_policy.dart';
 import '../contest/AppColors.dart';
 import 'change_password.dart';
 import 'constants.dart';
@@ -17,6 +17,8 @@ import 'help_info.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'dart:io';
+
+import 'privacy-policy.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -291,17 +293,17 @@ class ProfileMenuWidget extends StatelessWidget {
       ),
       title: Text(title,
           style:
-              Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
+          Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
       trailing: endIcon
           ? Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.deep_orange.withOpacity(0.1),
-              ),
-              child: Icon(LineAwesomeIcons.angle_right,
-                  size: 18.0, color: Colors.grey))
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: AppColors.deep_orange.withOpacity(0.1),
+          ),
+          child: Icon(LineAwesomeIcons.angle_right,
+              size: 18.0, color: Colors.grey))
           : null,
     );
   }

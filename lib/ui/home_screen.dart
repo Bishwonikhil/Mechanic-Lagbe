@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.deep_orange,
         title: Text(
-            //'Cetagory'
+          //'Cetagory'
           'AppBarH'.tr,
         ),
         centerTitle: true,

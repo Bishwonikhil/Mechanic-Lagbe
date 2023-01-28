@@ -26,20 +26,20 @@ class _SettingScreenState extends State<SettingScreen> {
       (context: context,
         builder: (builder){
           return AlertDialog(
-          title: Text("Choose a language"),
+            title: Text("Choose a language"),
             content: Container(
               width: double.maxFinite,
               child: ListView.separated(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   itemBuilder: (context, index){
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
-                        onTap: (){
-                          print(locale[index]['name']);
-                          updateLanguage(locale[index]['locale']);
+                          onTap: (){
+                            print(locale[index]['name']);
+                            updateLanguage(locale[index]['locale']);
 
-                        },
+                          },
                           child: Text(locale[index]['name'])),
                     );
 
@@ -53,7 +53,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ),
           );
-      });
+        });
   }
 
 
@@ -87,7 +87,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 },
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -96,7 +96,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         //'   Language                                  ',
                         'language'.tr,
                         style: TextStyle(
-                            fontSize: 20,),
+                          fontSize: 20,),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -110,7 +110,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: () {},
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -119,7 +119,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         //'   Dark Mode                                ',
                         'mode'.tr,
                         style: TextStyle(
-                            fontSize: 20,),
+                          fontSize: 20,),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -133,7 +133,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: () {},
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -142,7 +142,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         //'  Terms & Condition                  ',
                         'terms'.tr,
                         style: TextStyle(
-                            fontSize: 20,),
+                          fontSize: 20,),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -157,7 +157,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 onTap: () {},
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -166,7 +166,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         //'   Privacy Policy                           ',
                         'privacyP'.tr,
                         style: TextStyle(
-                            fontSize: 20,),
+                          fontSize: 20,),
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
@@ -181,7 +181,7 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  /*GestureDetector buildAcountOption(BuildContext context, String title) {
+/*GestureDetector buildAcountOption(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {},
       child: Padding(

@@ -31,7 +31,7 @@ class _SearchAreaState extends State<SearchArea> {
   CameraPosition? userCameraPosition;
 
   CustomInfoWindowController _customInfoWindowController =
-  CustomInfoWindowController();
+      CustomInfoWindowController();
 
   @override
   void initState() {
@@ -100,17 +100,80 @@ class _SearchAreaState extends State<SearchArea> {
       mapType: MapType.terrain,
       markers: Set<Marker>.of(
         snapshot.data!.docs.map(
-              (element) {
+          (element) {
             return Marker(
                 position: LatLng(element['lati'], element['long']),
                 markerId: MarkerId(element.id),
-                
                 icon: BitmapDescriptor.fromBytes(mechanicLocationIcon!),
                 onTap: () {
-                  openDialog();
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      //contentPadding: EdgeInsets.all(30),
+                      title: Text(
+                        'Mechanic Profile',
+                        style: TextStyle(fontSize: 16, fontFamily: 'TitanOne'),
+                      ),
+                      content: Row(
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                child:
+                                Image.asset('assets/images/account.png'),
+                                radius: 10,
+                                backgroundColor: Colors.white,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    element['Name'],
+                                    style: TextStyle(
+                                        fontFamily: 'TitanOne',
+                                        color: Colors.black54),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+
+                        ],
+
+                      ),
+                      /*Container(
+                        height: 20,
+                        */ /*decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),*/ /*
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                CircleAvatar(
+                                  child: Image.asset('assets/images/account.png'),
+                                  radius: 10,
+                                  backgroundColor: Colors.white,
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 10,),
+                            Column(
+                              children: [
+                                Text(element['Name'],style: TextStyle(fontFamily: 'TitanOne',color: Colors.black54),)
+                              ],
+                            ),
+                          ],
+
+                        ),
+                      ),*/
+                    ),
+                  );
                 }
 
-              /*_customInfoWindowController.addInfoWindow!(
+                /*_customInfoWindowController.addInfoWindow!(
                   Container(
                     height: 200,
                     width: 200,
@@ -120,7 +183,7 @@ class _SearchAreaState extends State<SearchArea> {
                 );
               }*/
 
-            );
+                );
           },
         ),
       ),
@@ -159,9 +222,9 @@ class _SearchAreaState extends State<SearchArea> {
 
   getMarkers() async {
     userLocationIcon =
-    await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
+        await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
     mechanicLocationIcon =
-    await getBytesFromAssets("assets/images/mechanic.png", 150);
+        await getBytesFromAssets("assets/images/mechanic.png", 150);
 
     if (userLocationIcon != null && mechanicLocationIcon != null) {
       setState(() {
@@ -187,7 +250,7 @@ class _SearchAreaState extends State<SearchArea> {
     });
   }*/
 
-  Future openDialog() => showDialog(
+  /*Future openDialog() => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       //contentPadding: EdgeInsets.all(30),
@@ -196,23 +259,32 @@ class _SearchAreaState extends State<SearchArea> {
         style: TextStyle(fontSize: 16, fontFamily: 'TitanOne'),
       ),
       content: Container(
-        height: 30,
+        height: 20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
           children: [
-            CircleAvatar(
-              child: Image.asset('assets/images/account.png'),
-              radius: 20,
-              backgroundColor: Colors.white,
+            Column(
+              children: [
+                CircleAvatar(
+                  child: Image.asset('assets/images/account.png'),
+                  radius: 10,
+                  backgroundColor: Colors.white,
+                ),
+              ],
             ),
-            //SizedBox(width: 5,),
+            SizedBox(width: 10,),
+            Column(
+              children: [
+                Text('Bishwo Nikhil Paul',style: TextStyle(fontFamily: 'TitanOne',color: Colors.black54),)
+              ],
+            ),
           ],
         ),
       ),
     ),
-  );
+  );*/
 
   Future<Uint8List> getBytesFromAssets(String path, int height) async {
     ByteData data = await rootBundle.load(path);
