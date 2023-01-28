@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:third_year_project/contest/AppColors.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -9,12 +11,59 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  final List locale =[
+    {'name':'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'বাংলা', 'locale': Locale('bn', 'BN')},
+  ];
+
+  updateLanguage(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  buildDialog(BuildContext context){
+    showDialog
+      (context: context,
+        builder: (builder){
+          return AlertDialog(
+          title: Text("Choose a language"),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                shrinkWrap: true,
+                  itemBuilder: (context, index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: (){
+                          print(locale[index]['name']);
+                          updateLanguage(locale[index]['locale']);
+
+                        },
+                          child: Text(locale[index]['name'])),
+                    );
+
+                  },
+                  separatorBuilder: (context, index){
+                    return Divider(
+                      color: Colors.redAccent,
+                    );
+                  },
+                  itemCount: locale.length
+              ),
+            ),
+          );
+      });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Settings",
+        title:  Text(
+          //"Settings",
+          'AppBarS'.tr,
         ),
         backgroundColor: AppColors.deep_orange,
         automaticallyImplyLeading: false,
@@ -33,7 +82,9 @@ class _SettingScreenState extends State<SettingScreen> {
               buildAcountOption(context, 'Privacy Policy'),*/
 
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  buildDialog(context);
+                },
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -42,7 +93,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: [
                       Icon(Icons.g_translate),
                       Text(
-                        '   Language                                  ',
+                        //'   Language                                  ',
+                        'language'.tr,
                         style: TextStyle(
                             fontSize: 20,),
                       ),
@@ -64,7 +116,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: [
                       Icon(Icons.dark_mode),
                       Text(
-                        '   Dark Mode                                ',
+                        //'   Dark Mode                                ',
+                        'mode'.tr,
                         style: TextStyle(
                             fontSize: 20,),
                       ),
@@ -86,7 +139,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: [
                       Icon(Icons.beenhere),
                       Text(
-                        '  Terms & Condition                  ',
+                        //'  Terms & Condition                  ',
+                        'terms'.tr,
                         style: TextStyle(
                             fontSize: 20,),
                       ),
@@ -109,7 +163,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     children: [
                       Icon(Icons.policy),
                       Text(
-                        '   Privacy Policy                           ',
+                        //'   Privacy Policy                           ',
+                        'privacyP'.tr,
                         style: TextStyle(
                             fontSize: 20,),
                       ),

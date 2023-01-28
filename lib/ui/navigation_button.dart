@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:third_year_project/ui/account_screen.dart';
 import 'package:third_year_project/ui/home_screen.dart';
@@ -36,19 +37,19 @@ class _NavigationButtonState extends State<NavigationButton> {
         tabs:[
           GButton(
             icon: Icons.home,
-            text: 'Home',
+            text: 'nHome'.tr,
           ),
           GButton(
             icon: Icons.settings,
-            text: 'Settings',
+            text: 'nSettings'.tr,
           ),
           GButton(
             icon: Icons.apps,
-            text: 'More',
+            text: 'nMore'.tr,
           ),
           GButton(
             icon: Icons.person,
-            text: 'Account',
+            text: 'nAccount'.tr,
           ),
         ],
         selectedIndex: _selectedindex,

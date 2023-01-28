@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/search_area.dart';
@@ -30,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.deep_orange,
-        title: Text('Cetagory'),
+        title: Text(
+            //'Cetagory'
+          'AppBarH'.tr,
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -65,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(left: 90, top: 20),
                 child: Text(
                   'Please select one!',
+                  //'select'.tr,
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'TitanOne',
@@ -108,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 iconSize: 100,
                               ),
                               Text(
-                                'Car',
+                                //'Car',
+                                'car'.tr,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'TitanOne',
@@ -142,7 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 iconSize: 100,
                               ),
                               Text(
-                                'Truck',
+                                //'Truck',
+                                'truck'.tr,
                                 style: TextStyle(
                                     fontSize: 20, fontFamily: 'TitanOne'),
                               ),
@@ -173,7 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 iconSize: 100,
                               ),
                               Text(
-                                'Bike',
+                                //'Bike',
+                                'bike'.tr,
                                 style: TextStyle(
                                     fontSize: 20, fontFamily: 'TitanOne'),
                               ),
@@ -204,7 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 iconSize: 100,
                               ),
                               Text(
-                                'Bus',
+                                //'Bus',
+                                'bus'.tr,
                                 style: TextStyle(
                                     fontSize: 20, fontFamily: 'TitanOne'),
                               ),
@@ -235,7 +244,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 iconSize: 100,
                               ),
                               Text(
-                                'CNG',
+                                //'CNG',
+                                'cng'.tr,
                                 style: TextStyle(
                                     fontSize: 20, fontFamily: 'TitanOne'),
                               ),

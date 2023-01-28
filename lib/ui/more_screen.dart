@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:share/share.dart';
 import 'package:third_year_project/contest/AppColors.dart';
 
@@ -23,8 +24,9 @@ class _MoreScreenState extends State<MoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "More",
+        title: Text(
+          //"More",
+          'AppBarM'.tr,
         ),
         backgroundColor: AppColors.deep_orange,
         automaticallyImplyLeading: false,
@@ -57,7 +59,8 @@ class _MoreScreenState extends State<MoreScreen> {
                     children: [
                       Icon(Icons.info),
                       Text(
-                        '   Help & Info',
+                        //'   Help & Info',
+                        'helpI'.tr,
                         style: TextStyle(
                           fontSize: 20,),
                       ),
@@ -84,7 +87,8 @@ class _MoreScreenState extends State<MoreScreen> {
                     children: [
                       Icon(Icons.star),
                       Text(
-                        '   Rate App',
+                        //'   Rate App',
+                        'rate'.tr,
                         style: TextStyle(
                           fontSize: 20,),
                       ),
@@ -108,7 +112,8 @@ class _MoreScreenState extends State<MoreScreen> {
                     children: [
                       Icon(Icons.share),
                       Text(
-                        '   Share App',
+                        //'   Share App',
+                        'share'.tr,
                         style: TextStyle(
                           fontSize: 20,),
                       ),
@@ -136,7 +141,8 @@ class _MoreScreenState extends State<MoreScreen> {
                     children: [
                       Icon(Icons.call),
                       Text(
-                        '   Contact Us',
+                        //'   Contact Us',
+                        'contact'.tr,
                         style: TextStyle(
                           fontSize: 20,),
                       ),

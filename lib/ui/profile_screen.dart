@@ -36,7 +36,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: const Icon(LineAwesomeIcons.angle_left),
         ),
         title: Text(
-          tProfile,
+          //tProfile,
+          'AppBarP'.tr,
           style: Theme.of(context).textTheme.headline5,
         ),
         actions: [
@@ -110,8 +111,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: ElevatedButton(
                   onPressed:
                       () {}, //=> Get.to(()=> const UpdateProfileScreen()),
-                  child: const Text(
-                    tEditProfile,
+                  child: Text(
+                    //tEditProfile,
+                    'edit'.tr,
                     style: TextStyle(color: Colors.black87),
                   ),
 
@@ -128,7 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               //MENU
               ProfileMenuWidget(
-                title: "Payment",
+                title: 'payment'.tr,//"Payment",
                 icon: LineAwesomeIcons.hand_holding_us_dollar,
                 onPress: () {
                   //Navigator.push(context, CupertinoPageRoute(builder: (context) => makePayment()));
@@ -136,18 +138,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 //onPress: () => obj.makePayment(amount: '5', currency: 'USD'),
               ),
               ProfileMenuWidget(
-                  title: "Privacy",
+                  title: 'privacy'.tr,//"Privacy",
                   icon: LineAwesomeIcons.lock,
                   onPress: () {}),
               ProfileMenuWidget(
-                  title: "Help & Support",
+                  title: 'help'.tr,//"Help & Support",
                   icon: LineAwesomeIcons.question_circle,
                   onPress: () {
                     Navigator.push(context,
                         CupertinoPageRoute(builder: (context) => HelpInfo()));
                   }),
               ProfileMenuWidget(
-                  title: "Change Password",
+                  title: 'change pw'.tr,//"Change Password",
                   icon: LineAwesomeIcons.lock,
                   onPress: () {
                     Navigator.push(
@@ -156,7 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             builder: (context) => Change_Password()));
                   }),
               ProfileMenuWidget(
-                  title: "Invite Friend",
+                  title: 'invite friend'.tr,//"Invite Friend",
                   icon: LineAwesomeIcons.user_plus,
                   onPress: () {
                     Share.share("com.example.third_year_project");
@@ -165,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 10),
 
               ProfileMenuWidget(
-                title: "Logout",
+                title: 'logout'.tr,//"Logout",
                 icon: LineAwesomeIcons.alternate_sign_out,
                 textColor: Colors.red,
                 onPress: () {
