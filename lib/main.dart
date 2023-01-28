@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:third_year_project/ui/splash_screen.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:third_year_project/ui/locale_string.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(375,812),
-      builder: (BuildContext context,child) => MaterialApp(
+      builder: (BuildContext context,child) => GetMaterialApp(
+        translations: LocalString(),
+        locale: Locale('en', 'US'),
         debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
