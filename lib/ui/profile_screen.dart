@@ -8,6 +8,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:share/share.dart';
 import 'package:third_year_project/ui/login_screen.dart';
 import 'package:third_year_project/ui/payment.dart';
+import 'package:third_year_project/ui/privacy_policy.dart';
 import '../contest/AppColors.dart';
 import 'change_password.dart';
 import 'constants.dart';
@@ -140,7 +141,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ProfileMenuWidget(
                   title: 'privacy'.tr,//"Privacy",
                   icon: LineAwesomeIcons.lock,
-                  onPress: () {}),
+                  onPress: () {
+                    Navigator.push(context,
+                        CupertinoPageRoute(builder: (context) => Privacy()));
+                  }),
               ProfileMenuWidget(
                   title: 'help'.tr,//"Help & Support",
                   icon: LineAwesomeIcons.question_circle,
