@@ -14,7 +14,7 @@ class PaymentController {
         await Stripe.instance.initPaymentSheet(
             paymentSheetParameters: SetupPaymentSheetParameters(
               paymentIntentClientSecret: paymentIntentData!['client_secret'],
-              applePay: const PaymentSheetApplePay(merchantCountryCode: '+92'),
+              //applePay: const PaymentSheetApplePay(merchantCountryCode: '+92'),
               googlePay: const PaymentSheetGooglePay(testEnv: true, currencyCode: "US", merchantCountryCode: '+92'),
               //testEnv: true,
               //merchantCountryCode: 'US',
@@ -56,8 +56,7 @@ class PaymentController {
           Uri.parse("https://api.stripe.com/v1/payment_intents"),
           body: body,
           headers: {
-            'Authorization':
-            'Bearer sk_test_51MPNfGHdowuvC8uFdd5X9MHQggdlAGDMt4o65E01BQ5sRyOK306hJLs6gRzkRr67FWxRB6EYBu5A9icLT8a6e2un00K7sKOTzG',
+            'Authorization': 'Bearer sk_test_51MPNfGHdowuvC8uFdd5X9MHQggdlAGDMt4o65E01BQ5sRyOK306hJLs6gRzkRr67FWxRB6EYBu5A9icLT8a6e2un00K7sKOTzG',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       return jsonDecode(response.body);
