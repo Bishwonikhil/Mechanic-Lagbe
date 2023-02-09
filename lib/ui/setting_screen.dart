@@ -98,10 +98,10 @@ class _SettingScreenState extends State<SettingScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-                      Icon(
+                      /*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.black38,
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -121,15 +121,15 @@ class _SettingScreenState extends State<SettingScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-                      Icon(
+                      /*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
               ),
-              GestureDetector(
+              /*GestureDetector(
                 onTap: () {},
                 child: Padding(
                   padding:
@@ -144,15 +144,15 @@ class _SettingScreenState extends State<SettingScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-                      Icon(
+                      *//*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,
-                      ),
+                      ),*//*
                     ],
 
                   ),
                 ),
-              ),
+              ),*/
               GestureDetector(
                 onTap: () {},
                 child: Padding(
@@ -161,17 +161,18 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.policy),
+                      Icon(Icons.beenhere),
                       Text(
                         //'   Privacy Policy                           ',
-                        'privacyP'.tr,
+                        //'privacyP'.tr,
+                        'terms'.tr,
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-                      Icon(
+                      /*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,
-                      ),
+                      ),*/
                     ],
                   ),
                 ),

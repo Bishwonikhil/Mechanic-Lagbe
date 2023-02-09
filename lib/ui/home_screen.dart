@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lottie/lottie.dart';
-import 'package:third_year_project/ui/search_area.dart';
+import 'package:third_year_project/ui/search_bike.dart';
+import 'package:third_year_project/ui/search_bus.dart';
+import 'package:third_year_project/ui/search_car.dart';
+import 'package:third_year_project/ui/search_cng.dart';
+import 'package:third_year_project/ui/serach_truck.dart';
 import 'package:third_year_project/ui/setting_screen.dart';
 
 import '../contest/AppColors.dart';
@@ -101,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SearchArea(),
+                                        builder: (context) => SearchCar(),
                                       ),
                                     );
                                   }
@@ -137,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SearchArea(),
+                                        builder: (context) => SearchTruck(),
                                       ),
                                     );
                                   }
@@ -170,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SearchArea(),
+                                        builder: (context) => SearchBike(),
                                       ),
                                     );
                                   };
@@ -202,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SearchArea(),
+                                        builder: (context) => SearchBus(),
                                       ),
                                     );
                                   };
@@ -234,7 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SearchArea(),
+                                        builder: (context) => SearchCNG(),
                                       ),
                                     );
                                   };

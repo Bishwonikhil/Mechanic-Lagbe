@@ -15,10 +15,10 @@ class LocalString extends Translations {
 
       //settings screen
       'AppBarS': 'Settings',
-      'language': '   Language                                  ',
-      'mode': '   Dark Mode                                ',
-      'terms': 'Terms & Condition              ',
-      'privacyP': '   Privacy Policy                           ',
+      'language': '   Language',
+      'mode': '   Dark Mode',
+      'terms': '   Terms & Condition',
+      'privacyP': '   Privacy Policy',
 
       //home screen
       'AppBarH': 'Category',

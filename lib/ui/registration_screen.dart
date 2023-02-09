@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
+import 'package:third_year_project/ui/home_screen.dart';
 import 'package:third_year_project/ui/user_form.dart';
+import 'package:third_year_project/ui/verify_email.dart';
 import '../contest/AppColors.dart';
 import 'login_screen.dart';
 
@@ -17,10 +19,10 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _otpController = TextEditingController();
+  //TextEditingController _otpController = TextEditingController();
   bool _obscureText = true;
 
-  void sentOTP() async {
+  /*void sentOTP() async {
     try{
       EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
       var res = await emailAuth.sendOtp(recipientMail: _emailController.text);
@@ -32,9 +34,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }catch(e){
       print(e);
     }
-  }
+  }*/
 
-  void verifyOTP() {
+  /*void verifyOTP() {
     try{
       EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
       var res = emailAuth.validateOtp(
@@ -46,7 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }catch(e){
       print(e);
     }
-  }
+  }*/
 
   signUp() async {
     try {
@@ -60,6 +62,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
+      /*await userCredential.user!.sendEmailVerification();
+      return userCredential;*/
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Fluttertoast.showToast(msg: "The password provided is too weak.");
@@ -79,6 +83,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            /*StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context,snapshot){
+                if(snapshot.hasData){
+                  return VerifyEmailPage();
+                }else{
+
+                }
+                return SizedBox();
+                }
+            ),*/
             SizedBox(
               height: 150.h,
               width: ScreenUtil().screenWidth,
@@ -91,17 +106,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     Lottie.network(
                         'https://assets5.lottiefiles.com/packages/lf20_L7YrbxFm46.json',
                         height: 140),
-                    /*IconButton(
-                      onPressed: null,
-                      icon: Icon(
-                        Icons.light,
-                        color: Colors.transparent,
-                      ),
-                    ),
-                    Text(
-                      "Sign Up",
-                      style: TextStyle(fontSize: 22.sp, color: Colors.white),
-                    ),*/
                   ],
                 ),
               ),
@@ -175,14 +179,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     fontSize: 15.sp,
                                     color: AppColors.deep_orange,
                                   ),
-                                  suffixIcon: TextButton(
-                                    child: const Text(
-                                      "Sent OTP",
-                                      style: TextStyle(
-                                          color: AppColors.deep_orange),
-                                    ),
-                                    onPressed: () => sentOTP(),
-                                  ),
                                 ),
                               ),
                             ),
@@ -190,55 +186,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         SizedBox(
                           height: 10.h,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 48.h,
-                              width: 41.w,
-                              decoration: BoxDecoration(
-                                color: AppColors.deep_orange,
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.pin,
-                                  color: Colors.white,
-                                  size: 20.w,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Expanded(
-                              child: TextField(
-                                controller: _otpController,
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  hintText: "Enter OTP",
-                                  hintStyle: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: Color(0xFFBBBBBB),
-                                  ),
-                                  labelText: 'OTP',
-                                  labelStyle: TextStyle(
-                                    fontSize: 15.sp,
-                                    color: AppColors.deep_orange,
-                                  ),
-                                  suffixIcon: TextButton(
-                                    child: const Text(
-                                      "Verify OTP",
-                                      style: TextStyle(
-                                          color: AppColors.deep_orange),
-                                    ),
-                                    onPressed: () => verifyOTP(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
 
                         Row(

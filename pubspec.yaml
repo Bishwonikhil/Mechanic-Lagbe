@@ -59,6 +59,8 @@ dependencies:
   path_provider: ^2.0.11
   location: ^4.4.0
   custom_info_window: ^1.0.1
+  flutter_phone_direct_caller: ^2.1.1
+  giff_dialog: ^1.0.1
 
 
 
@@ -112,6 +114,9 @@ flutter:
     - assets/images/standing-up-man-.png
     - assets/images/Profile.png
     - assets/images/account.png
+    - assets/images/placeholder.png
+    - assets/images/phone-call.png
+    - assets/images/old-typical-phone.png
     - assets/map_style
 
   # An image asset can refer to one or more resolution-specific "variants", see

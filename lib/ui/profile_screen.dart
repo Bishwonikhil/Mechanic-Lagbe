@@ -7,9 +7,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:share/share.dart';
 import 'package:third_year_project/ui/login_screen.dart';
+import 'package:third_year_project/ui/logout_splash.dart';
 import 'package:third_year_project/ui/payment.dart';
-import 'package:third_year_project/ui/payment_screen.dart';
-import 'package:third_year_project/ui/privacy_policy.dart';
+import 'package:third_year_project/ui/payment.dart';
+import 'package:third_year_project/ui/privacy-policy.dart';
 import '../contest/AppColors.dart';
 import 'change_password.dart';
 import 'constants.dart';
@@ -177,8 +178,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 icon: LineAwesomeIcons.alternate_sign_out,
                 textColor: Colors.red,
                 onPress: () {
+
                   Navigator.push(context,
-                      CupertinoPageRoute(builder: (context) => LoginScreen()));
+                      CupertinoPageRoute(builder: (context) => LogSplash()));
                 },
               ),
             ],
@@ -293,17 +295,17 @@ class ProfileMenuWidget extends StatelessWidget {
       ),
       title: Text(title,
           style:
-              Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
+          Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
       trailing: endIcon
           ? Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.deep_orange.withOpacity(0.1),
-              ),
-              child: Icon(LineAwesomeIcons.angle_right,
-                  size: 18.0, color: Colors.grey))
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: AppColors.deep_orange.withOpacity(0.1),
+          ),
+          child: Icon(LineAwesomeIcons.angle_right,
+              size: 18.0, color: Colors.grey))
           : null,
     );
   }
