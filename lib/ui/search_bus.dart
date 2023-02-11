@@ -50,7 +50,7 @@ class _SearchBusState extends State<SearchBus> {
     //var pro = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("Car").snapshots(),
+        stream: FirebaseFirestore.instance.collection("Bus").snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(child: Text("Something went wrong"));
@@ -118,12 +118,12 @@ class _SearchBusState extends State<SearchBus> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       description: Text(
-                          'I am a car mechanic.I am here for to serve you. Feel free to call me ' +
+                          'I am a bus mechanic.I am here for to serve you. Feel free to call me ' +
                               element['Phone Number'] +
                               ' by this number between ' +
-                              element['time'] +
+                              element['Time'] +
                               '. My workshop location is ' +
-                              element['Address']+'.'),
+                              element['Address']+'.',textAlign: TextAlign.justify),
                       cornerRadius: 30.0,
                       onOkButtonPressed: () async {
                         final number = element['Phone Number'];

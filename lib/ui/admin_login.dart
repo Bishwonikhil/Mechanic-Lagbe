@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,24 +9,29 @@ import 'package:third_year_project/ui/forgot_pw.dart';
 import 'package:third_year_project/ui/registration_screen.dart';
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
-import 'admin_login.dart';
+import 'admin_panel.dart';
 import 'navigation_button.dart';
 
-class LoginScreen extends StatefulWidget {
+class AdminLoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _AdminLoginScreenState createState() => _AdminLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+class _AdminLoginScreenState extends State<AdminLoginScreen> {
+  TextEditingController _adminEmailController = TextEditingController();
+  TextEditingController _adminPasswordController = TextEditingController();
   bool _obscureText = true;
 
-  signIn() async {
+  adminSignIn() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
+      await FirebaseFirestore.instance.collection('Admin').doc('AdminLogin').snapshots().forEach((element) {
+        if(element.data()?['Admin Email']==_adminEmailController.text && element.data()?['Admin Pass']==_adminPasswordController.text){
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AdminPanel()), (route) => false);
+        }
+      });
+      /*UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-              email: _emailController.text, password: _passwordController.text);
+          email: _adminEmailController.text, password: _adminPasswordController.text);
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
@@ -33,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context, CupertinoPageRoute(builder: (_) => NavigationButton()));
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
-      }
+      }*/
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Fluttertoast.showToast(msg: "No user found for that email.");
@@ -62,10 +68,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Lottie.network(
-                        'https://assets4.lottiefiles.com/private_files/lf30_kj1v7uim.json',
+                        'https://assets6.lottiefiles.com/packages/lf20_p33c5wk5.json',
                         //height: ScreenUtil().scaleHeight,
-                       // fit: BoxFit.fill,
-                      height: 140
+                        // fit: BoxFit.fill,
+                      height: 140,
                     ),
                   ],
                 ),
@@ -92,17 +98,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 20.h,
                         ),
                         Text(
-                          "Welcome! Sign In",
+                          "Welcome Admin! Sign In",
                           style: TextStyle(
                               fontSize: 22.sp, color: AppColors.deep_orange),
                         ),
-                        Text(
+                        /*Text(
                           "Glad to see you back.",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Color(0xFFBBBBBB),
                           ),
-                        ),
+                        ),*/
                         SizedBox(
                           height: 15.h,
                         ),
@@ -128,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                controller: _emailController,
+                                controller: _adminEmailController,
                                 decoration: InputDecoration(
                                   hintText: "abcd9954@gmail.com",
                                   hintStyle: TextStyle(
@@ -170,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                controller: _passwordController,
+                                controller: _adminPasswordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   hintText: "password must be 6 character",
@@ -185,35 +191,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   suffixIcon: _obscureText == true
                                       ? IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscureText = false;
-                                            });
-                                          },
-                                          icon: Icon(
-                                            Icons.remove_red_eye,
-                                            size: 20.w,
-                                          ))
+                                      onPressed: () {
+                                        setState(() {
+                                          _obscureText = false;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.remove_red_eye,
+                                        size: 20.w,
+                                      ))
                                       : IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscureText = true;
-                                            });
-                                          },
-                                          icon: Icon(
-                                            Icons.visibility_off,
-                                            size: 20.w,
-                                          )),
+                                      onPressed: () {
+                                        setState(() {
+                                          _obscureText = true;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.visibility_off,
+                                        size: 20.w,
+                                      )),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        /*SizedBox(
                           height: 15.h,
-                        ),
+                        ),*/
 
-                        Row(
+                        /*Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
@@ -235,7 +241,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ],
-                        ),
+                        ),*/
 
                         SizedBox(
                           height: 30.h,
@@ -243,14 +249,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         // elevated button
                         customButton(
                           "Sign In",
-                          () {
-                            signIn();
+                              () {
+                                adminSignIn();
                           },
                         ),
                         SizedBox(
                           height: 20.h,
                         ),
-                        Wrap(
+                        /*Wrap(
                           children: [
                             Text(
                               "Don't have an account?",
@@ -276,28 +282,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         builder: (context) =>
                                             RegistrationScreen()));
                               },
-                            ),
-                            SizedBox(width: 100,),
-                            GestureDetector(
-                              child: Text(
-                                " Admin",
-                                style: TextStyle(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.deep_orange,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            AdminLoginScreen()));
-                              },
-                            ),
+                            )
                           ],
-
-                        )
+                        )*/
                       ],
                     ),
                   ),

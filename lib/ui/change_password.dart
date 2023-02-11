@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 
 import '../contest/AppColors.dart';
+import '../widget/customButton.dart';
 import 'login_screen.dart';
 
 class Change_Password extends StatefulWidget {
@@ -75,7 +76,7 @@ class _Change_PasswordState extends State<Change_Password> {
                   },
                 ),
               ),
-              ElevatedButton(
+              /*ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     setState(() {
@@ -91,6 +92,17 @@ class _Change_PasswordState extends State<Change_Password> {
                   selectionColor: AppColors.deep_orange,
                 ),
 
+              ),*/
+              customButton(
+                "Change Password",
+                    () {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          newPassword = newPasswordController.text;
+                        });
+                        changePassword();
+                      }
+                },
               ),
             ],
           ),

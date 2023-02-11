@@ -58,7 +58,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
-        Navigator.push(context, CupertinoPageRoute(builder: (_) => LoginScreen()));
+        Navigator.push(
+            context, CupertinoPageRoute(builder: (_) => VerifyEmailPage()));
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
@@ -104,8 +105,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Lottie.network(
-                        'https://assets5.lottiefiles.com/packages/lf20_L7YrbxFm46.json',
-                        height: 140),
+                      'https://assets5.lottiefiles.com/packages/lf20_L7YrbxFm46.json',
+                      height: 140,
+                    ),
                   ],
                 ),
               ),

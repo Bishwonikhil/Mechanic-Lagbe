@@ -121,9 +121,9 @@ class _SearchCarState extends State<SearchCar> {
                           'I am a car mechanic.I am here for to serve you. Feel free to call me ' +
                               element['Phone Number'] +
                               ' by this number between ' +
-                              element['time'] +
+                              element['Time'] +
                               '. My workshop location is ' +
-                              element['Address']+'.'),
+                              element['Address']+'.',textAlign: TextAlign.justify),
                       cornerRadius: 30.0,
                       onOkButtonPressed: () async {
                         final number = element['Phone Number'];

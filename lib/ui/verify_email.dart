@@ -3,6 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:third_year_project/ui/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:third_year_project/widget/customButton.dart';
+
+import '../contest/AppColors.dart';
+import 'navigation_button.dart';
 
 class VerifyEmailPage extends StatefulWidget {
   const VerifyEmailPage({Key? key}) : super(key: key);
@@ -69,10 +73,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? HomeScreen()
+      ? NavigationButton()
       : Scaffold(
           appBar: AppBar(
-            title: Text('Verify Email'),
+            title: Text('Verify Email',style: TextStyle(fontFamily: 'TitanOne'),),
+            backgroundColor: AppColors.deep_orange,
+            centerTitle: true,
           ),
           body: Padding(
             padding: EdgeInsets.all(16),
@@ -87,7 +93,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 SizedBox(
                   height: 20,
                 ),
-                ElevatedButton.icon(
+                customButton('Request Sent', (){}),
+                /*ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50),
                   ),
@@ -100,7 +107,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     'Request Sent',
                     style: TextStyle(fontFamily: 'TitanOne', fontSize: 24),
                   ),
-                ),
+
+                ),*/
                 TextButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50),
@@ -108,7 +116,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                   onPressed: () => FirebaseAuth.instance.signOut(),
                   child: Text(
                     'Cancel',
-                    style: TextStyle(fontSize: 24, fontFamily: 'TitanOne'),
+                    style: TextStyle(fontSize: 24, fontFamily: 'TitanOne',color: AppColors.deep_orange),
                   ),
                 ),
               ],

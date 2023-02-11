@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:third_year_project/ui/splash_screen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'ui/local_string.dart';
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = 'pk_test_51MPNfGHdowuvC8uFcyiOhDhHKUTnWVk4RkNlVEDhAOqAHskoMhmCWKR8fer6PxNufSfGBbZaZl9sOCwLDBAcCh3D00vxdh0hH1';
   await Firebase.initializeApp();
   runApp(MyApp());
 }

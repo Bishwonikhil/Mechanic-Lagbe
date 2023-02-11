@@ -58,6 +58,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   children: [
                     Lottie.network(
                         'https://assets4.lottiefiles.com/packages/lf20_xvrofzfk.json',
+                      height: 140,
                       animate: true,
                     ),
                   ],
