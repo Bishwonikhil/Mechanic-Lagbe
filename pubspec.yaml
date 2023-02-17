@@ -116,6 +116,8 @@ flutter:
     - assets/images/account.png
     - assets/images/placeholder.png
     - assets/images/phone-call.png
+    - assets/images/login.png
+    - assets/images/bkash_payment_logo.png
     - assets/images/old-typical-phone.png
     - assets/map_style
 

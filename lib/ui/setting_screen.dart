@@ -106,7 +106,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   ),
                 ),
               ),
-              GestureDetector(
+              /*GestureDetector(
                 onTap: () {},
                 child: Padding(
                   padding:
@@ -121,14 +121,14 @@ class _SettingScreenState extends State<SettingScreen> {
                         style: TextStyle(
                           fontSize: 20,),
                       ),
-                      /*Icon(
+                      *//*Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.grey,
-                      ),*/
+                      ),*//*
                     ],
                   ),
                 ),
-              ),
+              ),*/
               /*GestureDetector(
                 onTap: () {},
                 child: Padding(

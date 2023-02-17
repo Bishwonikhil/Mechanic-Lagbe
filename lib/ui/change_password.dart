@@ -57,23 +57,46 @@ class _Change_PasswordState extends State<Change_Password> {
                   'https://assets1.lottiefiles.com/packages/lf20_msdmfngy.json'),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10.0),
-                child: TextFormField(
-                  autofocus: false,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: ' New Password ',
-                    hintText: ' Enter new password ',
-                    labelStyle: TextStyle(fontSize: 20.0),
-                    border: OutlineInputBorder(),
-                    errorStyle: TextStyle(color: Colors.black, fontSize: 15.0),
-                  ),
-                  controller: newPasswordController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return ' Please enter password ';
-                    }
-                    return null;
-                  },
+                child: Column(
+                  children: [
+                    TextFormField(
+                      autofocus: false,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: ' Old Password ',
+                        hintText: ' Enter old password ',
+                        labelStyle: TextStyle(fontSize: 20.0),
+                        border: OutlineInputBorder(),
+                        errorStyle: TextStyle(color: Colors.black, fontSize: 15.0),
+                      ),
+                      /*controller: newPasswordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return ' Please enter password ';
+                        }
+                        return null;
+                      },*/
+                    ),
+                    SizedBox(height: 20,),
+                    TextFormField(
+                      autofocus: false,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: ' New Password ',
+                        hintText: ' Enter new password ',
+                        labelStyle: TextStyle(fontSize: 20.0),
+                        border: OutlineInputBorder(),
+                        errorStyle: TextStyle(color: Colors.black, fontSize: 15.0),
+                      ),
+                      controller: newPasswordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return ' Please enter password ';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
               ),
               /*ElevatedButton(

@@ -110,7 +110,7 @@ class _SearchTruckState extends State<SearchTruck> {
                     context: context,
                     builder: (_) => NetworkGiffDialog(
                       image: Image.network(
-                        'https://i.pinimg.com/originals/49/68/f9/4968f9fa7d189a4ced1bdd58f5576227.gif',
+                        'https://i.gifer.com/6iC.gif',
                         fit: BoxFit.cover,
                       ),
                       title: Text(

@@ -110,7 +110,7 @@ class _SearchBikeState extends State<SearchBike> {
                     context: context,
                     builder: (_) => NetworkGiffDialog(
                       image: Image.network(
-                        'https://media.tenor.com/hQSLV5xmXeAAAAAC/mechanic-screw.gif',
+                        'https://cdn.dribbble.com/users/2087905/screenshots/6265961/bikey-3.gif',
                         fit: BoxFit.cover,
                       ),
                       title: Text(

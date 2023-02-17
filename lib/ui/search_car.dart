@@ -9,6 +9,7 @@ import 'package:location/location.dart' as loc;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:ui' as ui;
 import 'package:giff_dialog/giff_dialog.dart';
+import 'package:third_year_project/widget/customButton.dart';
 
 class SearchCar extends StatefulWidget {
   const SearchCar({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class SearchCar extends StatefulWidget {
 }
 
 class _SearchCarState extends State<SearchCar> {
+  TextEditingController _bKashnbController = TextEditingController();
   final loc.Location location = loc.Location();
   bool isIconSelected = true;
   bool _added = false;
@@ -29,7 +31,7 @@ class _SearchCarState extends State<SearchCar> {
   CameraPosition? userCameraPosition;
 
   CustomInfoWindowController _customInfoWindowController =
-  CustomInfoWindowController();
+      CustomInfoWindowController();
 
   @override
   void initState() {
@@ -100,7 +102,7 @@ class _SearchCarState extends State<SearchCar> {
       mapType: MapType.terrain,
       markers: Set<Marker>.of(
         snapshot.data!.docs.map(
-              (element) {
+          (element) {
             return Marker(
                 position: LatLng(element['lati'], element['long']),
                 markerId: MarkerId(element.id),
@@ -110,7 +112,7 @@ class _SearchCarState extends State<SearchCar> {
                     context: context,
                     builder: (_) => NetworkGiffDialog(
                       image: Image.network(
-                        'https://i.pinimg.com/originals/73/5c/ea/735cea56968f703df45d4c551ee3b160.gif',
+                        'https://cdn.dribbble.com/users/207059/screenshots/16573461/media/f154d82ff06254c9d49bd8ddda1db06f.gif',
                         fit: BoxFit.cover,
                       ),
                       title: Text(
@@ -123,14 +125,191 @@ class _SearchCarState extends State<SearchCar> {
                               ' by this number between ' +
                               element['Time'] +
                               '. My workshop location is ' +
-                              element['Address']+'.',textAlign: TextAlign.justify),
+                              element['Address'] +
+                              '.',
+                          textAlign: TextAlign.justify),
                       cornerRadius: 30.0,
+
+                      onCancelButtonPressed: () async {
+                        Navigator.pop(context);
+                        showDialog(
+                          builder: (context) => Dialog(
+                              child: Container(
+                            height: 350,
+                            color: Colors.pinkAccent.shade700,
+                            child: Stack(
+                              children: [
+                                //this container for bkash logo
+                                Container(
+                                  height: 80,
+                                  padding: EdgeInsets.all(50),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        'assets/images/bkash_payment_logo.png',
+                                      ),
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                ),
+                                //SizedBox(height: 20,),
+
+                                Positioned(
+                                  top: 90,
+                                  left: 40,
+                                  child: Container(
+                                    //height: 250,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'Your bkash account number',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 16),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 120, right: 40, left: 40),
+                                  child: Container(
+                                    height: 50,
+                                    color: Colors.white,
+                                    child: TextField(
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 11,
+                                      controller: _bKashnbController,
+                                      decoration: InputDecoration(
+                                        //contentPadding: EdgeInsets.only(left: 5),
+                                        hintText: "e.g 01XXXXXXXXX",
+                                        hintStyle: TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFFBBBBBB),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 190, left: 80),
+                                    child: Container(
+                                      height: 30,
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Procceed',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Colors.pinkAccent.shade700,
+                                          elevation: 3,
+                                        ),
+                                      ),
+                                    )),
+
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 240, left: 90),
+                                    child: Container(
+                                      height: 30,
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Close',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Colors.pinkAccent.shade700,
+                                          elevation: 3,
+                                        ),
+                                      ),
+                                    )),
+
+                                Padding(
+                                  padding: EdgeInsets.only(top: 300),
+                                  child: BackButton(
+                                    color: Colors.white,
+                                    onPressed: () {},
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: EdgeInsets.only(top: 310, left: 200),
+                                  child: CircleAvatar(
+                                    radius: 10,
+                                    backgroundColor: Colors.pinkAccent.shade700,
+                                    backgroundImage: const NetworkImage(
+                                        'https://cdn-icons-png.flaticon.com/512/159/159832.png'),
+                                  ),
+                                ),
+
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 295, left: 220),
+                                    child: TextButton(
+                                      child: const Text(
+                                        '16247',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      onPressed: () async {
+                                        await FlutterPhoneDirectCaller
+                                            .callNumber('16247');
+                                      },
+                                    )),
+
+                                /*Padding(
+                                  padding: EdgeInsets.only(top: 220),
+                                  child: Card(
+                                    color: Colors.pinkAccent.shade700,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text('Merchent: TestCheckOutDemoMerchent1'),
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ),
+                                )*/
+                              ],
+                            ),
+                          )),
+                          context: context,
+                          //builder: (BuildContext context) {},
+                        );
+                      },
+
+                      //Call to the mechanic method in this poriton
                       onOkButtonPressed: () async {
                         final number = element['Phone Number'];
                         await FlutterPhoneDirectCaller.callNumber(number);
                       },
 
                       entryAnimation: EntryAnimation.topLeft,
+
+                      //Payment method calling this portion
+                      buttonCancelText: Text(
+                        'Payment',
+                        style: TextStyle(color: Colors.black),
+                      ),
+
                       buttonOkText: Text(
                         'Call',
                         style: TextStyle(color: Colors.black),
@@ -138,6 +317,7 @@ class _SearchCarState extends State<SearchCar> {
 
                       //buttonOkColor: Colors.white,
                     ),
+
                     /*AlertDialog(
                       //contentPadding: EdgeInsets.all(30),
                       title: Text(
@@ -261,7 +441,7 @@ class _SearchCarState extends State<SearchCar> {
                   );
                 }
 
-              /*_customInfoWindowController.addInfoWindow!(
+                /*_customInfoWindowController.addInfoWindow!(
                   Container(
                     height: 200,
                     width: 200,
@@ -271,7 +451,7 @@ class _SearchCarState extends State<SearchCar> {
                 );
               }*/
 
-            );
+                );
           },
         ),
       ),
@@ -310,9 +490,9 @@ class _SearchCarState extends State<SearchCar> {
 
   getMarkers() async {
     userLocationIcon =
-    await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
+        await getBytesFromAssets("assets/images/standing-up-man-.png", 100);
     mechanicLocationIcon =
-    await getBytesFromAssets("assets/images/mechanic.png", 150);
+        await getBytesFromAssets("assets/images/mechanic.png", 150);
 
     if (userLocationIcon != null && mechanicLocationIcon != null) {
       setState(() {

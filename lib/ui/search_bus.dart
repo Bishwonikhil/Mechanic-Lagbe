@@ -110,7 +110,7 @@ class _SearchBusState extends State<SearchBus> {
                     context: context,
                     builder: (_) => NetworkGiffDialog(
                       image: Image.network(
-                        'https://i.pinimg.com/originals/ec/7b/78/ec7b78ab3079ace000a7bb5ab3f7c583.gif',
+                        'https://i.gifer.com/origin/b2/b263ea94379216c77de1956ab3c20d54.gif',
                         fit: BoxFit.cover,
                       ),
                       title: Text(
