@@ -4,7 +4,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:third_year_project/ui/account_screen.dart';
 import 'package:third_year_project/ui/home_screen.dart';
 import 'package:third_year_project/ui/more_screen.dart';
-import 'package:third_year_project/ui/profile_screen.dart';
+import 'package:third_year_project/ui/profile/profile_page.dart';
+import 'package:third_year_project/ui/more_page.dart';
 import 'package:third_year_project/ui/setting_screen.dart';
 
 class NavigationButton extends StatefulWidget {
@@ -19,9 +20,11 @@ class _NavigationButtonState extends State<NavigationButton> {
   int _selectedindex = 0;
   static final List<Widget> _NavScreens = <Widget>[
     HomeScreen(),
+    MorePage(),
     SettingScreen(),
-    MoreScreen(),
-    ProfileScreen(),
+    //MoreScreen(),
+    //ProfileScreen(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -40,12 +43,12 @@ class _NavigationButtonState extends State<NavigationButton> {
             text: 'nHome'.tr,
           ),
           GButton(
-            icon: Icons.settings,
-            text: 'nSettings'.tr,
-          ),
-          GButton(
             icon: Icons.apps,
             text: 'nMore'.tr,
+          ),
+          GButton(
+            icon: Icons.settings,
+            text: 'nSettings'.tr,
           ),
           GButton(
             icon: Icons.person,
