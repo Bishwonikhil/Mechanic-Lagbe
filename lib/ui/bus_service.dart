@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:third_year_project/ui/search_bus.dart';
 
 class BusService extends StatefulWidget {
   const BusService({Key? key}) : super(key: key);
@@ -18,185 +19,190 @@ class _BusServiceState extends State<BusService> {
           centerTitle: true,
 
         ),
-        body: Container(
-          padding: EdgeInsets.only(top: 70),
-          child: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GridView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          //Icon(Icons.directions_car,size: 100,color: Colors.white,),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.network(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlHFjmyZpM_8NUUBu5XBafiS9lRi9kLCUkzg&usqp=CAU',
-                            ),//animate: true),
-                            iconSize: 100,
-                          ),
-                          Text(
+        body: Padding(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height * 0.25,
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
                             'Tyre Servicing',
-                            //'car'.tr,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'TitanOne',
-                            ),
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
-                        ],
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchBus()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
                       ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
+                      Image.asset(
+                        'assets/images/bus-tyre.png',
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchTruck(),
-                              ),
-                            );*/
-                              }
-                              ;
-                            },
-                            icon: Image.network(
-                                'https://previews.123rf.com/images/honeyflavour/honeyflavour1901/honeyflavour190100706/115617629-cartoon-scene-with-garage-mechanic-working-repairing-some-vehicle-police-car-or-cleaning-work-place-.jpg'),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Body Work',
-                            //'truck'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchBike(),
-                              ),
-                            );*/
-                              };
-                            },
-                            icon: Image.network(
-                                'https://play-lh.googleusercontent.com/gcnRLLNUoy7ZYenJ55FaJrVUFTRjPew9eRqplqyyzah3ZtIZFy069HJUAdEekflBxj4'
-                            ),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Bus Cleaining',
-                            //'bike'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchBus(),
-                              ),
-                            );*/
-                              };
-                            },
-                            icon: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7-KMz8UudXNNbID8W7GjEQZo_4Plov4Uouw&usqp=CAU'),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Diagonistics',
-                            //'bus'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(30.0),
-                    //     color: Colors.grey,
-                    //   ),
-                    //   child: Column(
-                    //     mainAxisAlignment: MainAxisAlignment.center,
-                    //     children: [
-                    //       IconButton(
-                    //         onPressed: () {
-                    //           {
-                    //             /*Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => SearchCNG(),
-                    //           ),
-                    //         );*/
-                    //           };
-                    //         },
-                    //         icon: Lottie.network(
-                    //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpbkzOgct8YYxITZvgbJxIqQefEAnIXX31Hg&usqp=CAU'),
-                    //         iconSize: 100,
-                    //       ),
-                    //       Text(
-                    //         'Servicing',
-                    //         //'cng'.tr,
-                    //         style: TextStyle(
-                    //             fontSize: 20, fontFamily: 'TitanOne'),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                  ],
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10),
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Body Work',
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchBus()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.brown,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/bus-damage.png',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Car Cleaning',
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchBus()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/bus-wash.png',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Diagonistics',
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchBus()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/bus-in-reparation.png',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-        )
+        ),
     );
   }
 }

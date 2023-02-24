@@ -8,6 +8,7 @@ import 'package:third_year_project/ui/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'decision.dart';
+import 'logout_splash.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -19,10 +20,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(
       const Duration(seconds: 3),
-      () => Navigator.push(
-        context,
-        CupertinoPageRoute(builder: (_) => LoginScreen()),
-      ),
+      () => Navigator.of(context).pushAndRemoveUntil(
+          new MaterialPageRoute(
+              builder: (context) => new Decision()),
+              (route) => false),
     );
     super.initState();
   }

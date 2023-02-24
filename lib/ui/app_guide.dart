@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-
 class AppGuide extends StatefulWidget {
   const AppGuide({Key? key}) : super(key: key);
 
@@ -10,14 +9,14 @@ class AppGuide extends StatefulWidget {
 }
 
 class _AppGuideState extends State<AppGuide> {
-  
+
   late VideoPlayerController _controller;
   late Future<void> _initializedVideoPlayerFuture;
-  
+
   @override
   void initState(){
-    
-    _controller = VideoPlayerController.asset('assets/images/video.mp4');
+
+    _controller = VideoPlayerController.asset('assets/images/guideVideo.mp4');
     _initializedVideoPlayerFuture = _controller.initialize();
     _controller.setLooping(true);
     _controller.setVolume(1.0);
@@ -29,18 +28,18 @@ class _AppGuideState extends State<AppGuide> {
     _controller.dispose();
     super.dispose();
   }
-  
-  
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('aGuide'.tr),//"App Guide"),
+        title: Text("App Guide"),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
 
-      
+
       body: Center(
         child: FutureBuilder(
           future: _initializedVideoPlayerFuture,

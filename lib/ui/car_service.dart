@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:third_year_project/ui/search_car.dart';
 
 class CarService extends StatefulWidget {
   const CarService({Key? key}) : super(key: key);
@@ -13,190 +14,239 @@ class _CarServiceState extends State<CarService> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Car Services',style: TextStyle(fontFamily: 'TitanOne',),),
+          title: Text(
+            'Car Services',
+            style: TextStyle(
+              fontFamily: 'TitanOne',
+            ),
+          ),
           backgroundColor: Colors.blueGrey,
           centerTitle: true,
-
         ),
-        body: Container(
-          padding: EdgeInsets.only(top: 70),
-          child: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GridView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          //Icon(Icons.directions_car,size: 100,color: Colors.white,),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Image.network(
-                                'https://cdni.iconscout.com/illustration/premium/thumb/mechanic-garage-workers-5283478-4409724.png?f=webp',
-                            ),//animate: true),
-                            iconSize: 100,
-                          ),
-                          Text(
+        body: Padding(
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height * 0.25,
+          ),
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
                             'Tyre Servicing',
-                            //'car'.tr,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'TitanOne',
-                            ),
+                            style:
+                                TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
-                        ],
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchCar()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
                       ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
+                      Image.asset(
+                        'assets/images/tyre.png',
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchTruck(),
-                              ),
-                            );*/
-                              }
-                              ;
-                            },
-                            icon: Image.network(
-                                'https://thumbs.dreamstime.com/b/car-service-having-their-repaired-cartoon-people-characters-paint-car-change-wheels-automobile-repair-shop-vehicle-service-concept-152230940.jpg'),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Body Work',
-                            //'truck'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchBike(),
-                              ),
-                            );*/
-                              };
-                            },
-                            icon: Lottie.network(
-                                'https://assets3.lottiefiles.com/packages/lf20_xvw0ldqd.json'
-                            ),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Car Cleaining',
-                            //'bike'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.grey,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              {
-                                /*Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SearchBus(),
-                              ),
-                            );*/
-                              };
-                            },
-                            icon: Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRENI13zU1CiCdcgXW1Y35yT_LVQEqWXiFJ8g&usqp=CAU'),
-                            iconSize: 100,
-                          ),
-                          Text(
-                            'Diagonistics',
-                            //'bus'.tr,
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'TitanOne'),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(30.0),
-                    //     color: Colors.grey,
-                    //   ),
-                    //   child: Column(
-                    //     mainAxisAlignment: MainAxisAlignment.center,
-                    //     children: [
-                    //       IconButton(
-                    //         onPressed: () {
-                    //           {
-                    //             /*Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => SearchCNG(),
-                    //           ),
-                    //         );*/
-                    //           };
-                    //         },
-                    //         icon: Lottie.network(
-                    //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpbkzOgct8YYxITZvgbJxIqQefEAnIXX31Hg&usqp=CAU'),
-                    //         iconSize: 100,
-                    //       ),
-                    //       Text(
-                    //         'Servicing',
-                    //         //'cng'.tr,
-                    //         style: TextStyle(
-                    //             fontSize: 20, fontFamily: 'TitanOne'),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                  ],
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10),
+                    ],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Body Work',
+                            style:
+                                TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchCar()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.brown,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/broken-car.png',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Car Cleaning',
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchCar()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/car-wash.png',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Container(
+                  height: 50.0,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0.0, 20.0),
+                          blurRadius: 30.0,
+                          color: Colors.black12,
+                        )
+                      ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: 200.0,
+                        child: TextButton(
+                          child: Text(
+                            'Diagonistics',
+                            style:
+                            TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchCar()));
+                          },
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(22.0),
+                              topLeft: Radius.circular(20.0),
+                              bottomRight: Radius.circular(220.0),
+                            )),
+                      ),
+                      Image.asset(
+                        'assets/images/car-service.png',
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         )
-    );
+        /*Center(
+        child: Container(
+          height: 50.0,
+          width: 250.0,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(22.0),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0.0, 20.0),
+                  blurRadius: 30.0,
+                  color: Colors.black12,
+                )
+              ]),
+          child: Row(
+            children: [
+              Container(
+                height: 50.0,
+                width: 200.0,
+                child: TextButton(
+                  child: Text(
+                    'Tyre Servicing',
+                    style: TextStyle(fontFamily: 'TitanOne', fontSize: 18),
+                  ),
+                  onPressed: () {},
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.greenAccent,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(22.0),
+                      topLeft: Radius.circular(20.0),
+                      bottomRight: Radius.circular(220.0),
+                    )),
+              ),
+              Image.asset(
+                'assets/images/tyre.png',
+              ),
+            ],
+          ),
+        ),*/
+        );
   }
 }

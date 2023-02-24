@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:third_year_project/ui/delete_car_mechanic.dart';
+import 'package:third_year_project/ui/insert_car_mechanic.dart';
 
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
@@ -15,7 +18,47 @@ class CarMechanic extends StatefulWidget {
 
 class _CarMechanicState extends State<CarMechanic> {
 
-  CollectionReference users = FirebaseFirestore.instance.collection('Car');
+  @override
+  Widget build(BuildContext context){
+    return Container(
+      child: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> InsertCar()));
+              },
+              child: Text(
+                'Insert Mechanic',
+                style: TextStyle(color: Colors.white, fontSize: 18.sp),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.deep_orange,
+                elevation: 3,
+              ),
+            ),
+
+            SizedBox(height: 20,),
+
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DeleteMechanic()));
+              },
+              child: Text(
+                'Delete Mechanic',
+                style: TextStyle(color: Colors.white, fontSize: 18.sp),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.deep_orange,
+                elevation: 3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  /*CollectionReference users = FirebaseFirestore.instance.collection('Car');
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
@@ -24,10 +67,9 @@ class _CarMechanicState extends State<CarMechanic> {
   TextEditingController _latiController = TextEditingController();
   TextEditingController _longController = TextEditingController();
 
-  late DatabaseReference  dbRef;
+  late DatabaseReference dbRef;
 
-
-  void initState(){
+  void initState() {
     super.initState();
     dbRef = FirebaseDatabase.instance.ref().child('Car');
   }
@@ -66,17 +108,17 @@ class _CarMechanicState extends State<CarMechanic> {
                     TextField(
                       controller: _nameController,
                       decoration: InputDecoration(
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        hintText: 'name',
-                        labelText: 'Name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )
-                      ),
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          hintText: 'name',
+                          labelText: 'Name',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
                     ),
-
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: _addressController,
                       decoration: InputDecoration(
@@ -86,10 +128,11 @@ class _CarMechanicState extends State<CarMechanic> {
                           labelText: 'Address',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: _timeController,
                       decoration: InputDecoration(
@@ -99,10 +142,11 @@ class _CarMechanicState extends State<CarMechanic> {
                           labelText: 'Time',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: _phoneController,
                       decoration: InputDecoration(
@@ -112,10 +156,11 @@ class _CarMechanicState extends State<CarMechanic> {
                           labelText: 'Phone',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: _latiController,
                       decoration: InputDecoration(
@@ -124,10 +169,11 @@ class _CarMechanicState extends State<CarMechanic> {
                           hintText: 'Latitude',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                          )),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     TextField(
                       controller: _longController,
                       decoration: InputDecoration(
@@ -136,47 +182,34 @@ class _CarMechanicState extends State<CarMechanic> {
                           hintText: 'Longitude',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
+                          )),
                     ),
-
-                    SizedBox(height: 20,),
-
+                    SizedBox(
+                      height: 20,
+                    ),
                     customButton(
                       "Submit Data",
-                          () async {
-                        /*await users.add({
+                      () async {
+                        ///latitude and longitude store here
+                        var latiController = _latiController.text.toString();
+                        var longController = _longController.text.toString();
+
+                        ///latitude and longitude convert in double here
+                        var lati = double.parse(latiController);
+                        var long = double.parse(longController);
+
+                        await users.add({
                           'Name': _nameController.text.toString(),
                           'Address': _addressController.text.toString(),
                           'Phone Number': _phoneController.text.toString(),
-                          'lati': _latiController.text.toString(),
-                          'long': _longController.text.toString(),
-                          'time': _timeController.text.toString(),
-                        }).then((value) => print('Added'));*/
-                       /* var _carMap= {
-                          'Name': _nameController.text.toString(),
-                          'Address': _addressController.text.toString(),
-                          'Phone Number': _phoneController.text.toString(),
-                          'lati': _latiController.text.toString(),
-                          'long': _longController.text.toString(),
-                          'time': _timeController.text.toString(),
-                        };
-                        final int documents =  await FirebaseFirestore.instance.collection('Car').snapshots().length;
-                        print('-------------------$documents');
-                        //int len=documents+1;
-                        await FirebaseFirestore.instance.collection('Car').doc('mechanic').set(_carMap);*/
-                           /* Map<String,dynamic> car = {
-                              'Name': _nameController.text,
-                              'Address': _addressController.text,
-                              'Phone Number': _phoneController.text,
-                              'lati': _latiController.text,
-                              'long': _longController.text,
-                              'time': _timeController.text,
-                            };
-                            dbRef.push().set(car);*/
+                          'lati': lati,
+                          'long': long,
+                          'Time': _timeController.text.toString(),
+                        }).then(
+                          (value) => print('Added'),
+                        );
                       },
                     ),
-
                   ],
                 ),
               ),
@@ -185,5 +218,5 @@ class _CarMechanicState extends State<CarMechanic> {
         ),
       ),
     );
-  }
+  }*/
 }

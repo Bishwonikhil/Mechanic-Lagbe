@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
+//import 'package:flutter_compass/flutter_compass.dart';
 
 class Compass extends StatefulWidget {
   const Compass({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class _CompassState extends State<Compass> {
     super.initState();
     FlutterCompass.events!.listen((event) {
       setState(() {
-      heading = event.heading;
-    });
+        heading = event.heading;
+      });
     });
   }
 
@@ -52,19 +53,19 @@ class _CompassState extends State<Compass> {
           //show the compass
           Padding(padding: EdgeInsets.all(18.0),
 
-            child: Stack(
-              alignment: Alignment.center,
+              child: Stack(
+                alignment: Alignment.center,
 
-              children: [
-                Image.asset("assets/images/cadrant.png"),
-                Transform.rotate(angle: ((heading ?? 0) * (pi / 180) * -1),
-                child: Image.asset("assets/images/compass.png",
-                       scale: 1.1,
-                ),
-                ),
+                children: [
+                  Image.asset("assets/images/cadrant.png"),
+                  Transform.rotate(angle: ((heading ?? 0) * (pi / 180) * -1),
+                    child: Image.asset("assets/images/compass.png",
+                      scale: 1.1,
+                    ),
+                  ),
 
-              ],
-            )
+                ],
+              )
           ),
         ],
       ),

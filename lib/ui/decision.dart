@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 
 import '../widget/my_button.dart';
+import 'Mechanic UI/mechanic_login.dart';
 import 'login_screen.dart';
 
 class Decision extends StatefulWidget {
@@ -25,16 +26,26 @@ class _DecisionState extends State<Decision> {
             Lottie.network('https://assets1.lottiefiles.com/packages/lf20_G5TBf4.json'),
             SizedBox(height: 50,),
             DecisionButton(
-              'assets/images/Profile.png',
+              'assets/images/user.png',
               'Login As a User',
-                (){},
+                (){
+                  Navigator.of(context).pushAndRemoveUntil(
+                      new MaterialPageRoute(
+                          builder: (context) => new LoginScreen()),
+                          (route) => false);
+                },
               Get.width*0.8,
             ),
             SizedBox(height: 20,),
             DecisionButton(
-              'assets/images/Mechanic.webp',
+              'assets/images/mechanic1.png',
               'Login As a Mechanic',
-                  (){},
+                  (){
+                    Navigator.of(context).pushAndRemoveUntil(
+                        new MaterialPageRoute(
+                            builder: (context) => new MechanicLogin()),
+                            (route) => false);
+                  },
               Get.width*0.8,
             )
           ],
