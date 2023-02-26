@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,9 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/home_screen.dart';
+import 'package:third_year_project/ui/navigation_button.dart';
 import 'package:third_year_project/ui/user_form.dart';
 import 'package:third_year_project/ui/verify_email.dart';
 import '../contest/AppColors.dart';
+import 'Mechanic UI/methods.dart';
 import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -19,52 +22,40 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _userName = TextEditingController();
+  TextEditingController _userNumber = TextEditingController();
   //TextEditingController _otpController = TextEditingController();
   bool _obscureText = true;
+  bool isLoading = false;
 
-  /*void sentOTP() async {
-    try{
-      EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
-      var res = await emailAuth.sendOtp(recipientMail: _emailController.text);
-      if (res) {
-        print("OTP sent");
-      } else {
-        print('Some problems occured to sent the otp');
-      }
-    }catch(e){
-      print(e);
-    }
-  }*/
 
-  /*void verifyOTP() {
-    try{
-      EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
-      var res = emailAuth.validateOtp(
-          recipientMail: _emailController.text, userOtp: _otpController.text);
-      if (res)
-        print("Hey Otp Verified sucessfully!");
-      else
-        print("Please Check your Otp!!");
-    }catch(e){
-      print(e);
-    }
-  }*/
-
-  signUp() async {
+  /*Future<User?>signUp(String name, String number) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text);
       var authCredential = userCredential.user;
-      print(authCredential!.uid);
-      if (authCredential.uid.isNotEmpty) {
-        Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => VerifyEmailPage()));
+      //print(userCredential.user);
+      if (authCredential!.uid.isNotEmpty) {
+        FirebaseFirestore.instance.collection("User").doc(authCredential.uid).set({
+          'name': name,
+          'email':authCredential.email,
+          'number': number,
+          'uid': FirebaseAuth.instance.currentUser!.uid,
+          'imageUrl': "",
+
+
+        });
+
+        ///print(authCredential!.uid);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyEmailPage()));
+        *//*Navigator.push(
+            context, CupertinoPageRoute(builder: (_) => VerifyEmailPage()));*//*
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
-      /*await userCredential.user!.sendEmailVerification();
-      return userCredential;*/
+      *//*await userCredential.user!.sendEmailVerification();
+      return userCredential;*//*
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Fluttertoast.showToast(msg: "The password provided is too weak.");
@@ -76,7 +67,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       print(e);
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,6 +138,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         SizedBox(
                           height: 15.h,
                         ),
+
+                        Row(
+                          children: [
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.deep_orange,
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _userName,
+                                decoration: InputDecoration(
+                                  hintText: "name",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFFBBBBBB),
+                                  ),
+                                  labelText: 'NAME',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
                         Row(
                           children: [
                             Container(
@@ -188,6 +220,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                         SizedBox(
                           height: 10.h,
+                        ),
+
+                        Row(
+                          children: [
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.deep_orange,
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _userNumber,
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  hintText: "number",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFFBBBBBB),
+                                  ),
+                                  labelText: 'NUMBER',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
 
                         Row(
@@ -262,7 +335,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           height: 56.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              signUp();
+                              //signUp(_userName.text,_userNumber.text);
+                              if (_userName.text.isNotEmpty &&
+                                  _emailController.text.isNotEmpty &&
+                                  _passwordController.text.isNotEmpty&&_userNumber.text.isNotEmpty) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+
+                                createAccount(_userName.text, _emailController.text, _userNumber.text, _passwordController.text).then((user) {
+                                  if (user != null) {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (_) => VerifyEmailPage()));
+                                    print("Account created Succesfull");
+                                  } else {
+                                    print("Account created Failed");
+                                  }
+                                });
+                              } else {
+                                print("Please enter Fields");
+                              }
                             },
                             child: Text(
                               "Continue",

@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/admin_car.dart';
-
 import '../contest/AppColors.dart';
+import 'admin_panel.dart';
 
 class InsertSplash extends StatefulWidget {
   const InsertSplash({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class _InsertSplashState extends State<InsertSplash> {
   void initState() {
     Timer(
       const Duration(seconds: 3),
-          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> CarMechanic())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminPanel())),
     );
     super.initState();
   }

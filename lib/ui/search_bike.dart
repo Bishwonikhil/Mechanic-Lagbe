@@ -12,6 +12,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:ui' as ui;
 import 'package:giff_dialog/giff_dialog.dart';
 
+import 'Mechanic UI/chat.dart';
+
 class SearchBike extends StatefulWidget {
   const SearchBike({Key? key}) : super(key: key);
 
@@ -140,9 +142,7 @@ class _SearchBikeState extends State<SearchBike> {
 
                       onCancelButtonPressed: () async {
                         Navigator.pop(context);
-
-                        ///final call
-                        await bkashDialog();
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=>ChatScreen()));
 
                         //await getAmount();
 
@@ -152,7 +152,7 @@ class _SearchBikeState extends State<SearchBike> {
                       entryAnimation: EntryAnimation.topLeft,
 
                       buttonCancelText: Text(
-                        'Payment',
+                        'Message',
                         style: TextStyle(color: Colors.black),
                       ),
 

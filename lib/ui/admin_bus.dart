@@ -10,14 +10,14 @@ import 'package:third_year_project/ui/insert_car_mechanic.dart';
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
 
-class CarMechanic extends StatefulWidget {
-  const CarMechanic({Key? key}) : super(key: key);
+class BusMechanic extends StatefulWidget {
+  const BusMechanic({Key? key}) : super(key: key);
 
   @override
-  State<CarMechanic> createState() => _CarMechanicState();
+  State<BusMechanic> createState() => _BusMechanicState();
 }
 
-class _CarMechanicState extends State<CarMechanic> {
+class _BusMechanicState extends State<BusMechanic> {
 
   @override
   Widget build(BuildContext context){
@@ -29,7 +29,7 @@ class _CarMechanicState extends State<CarMechanic> {
             SizedBox(height: 50,),
             ElevatedButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> InsertCar()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> InsertBus()));
               },
               child: Text(
                 'Insert Mechanic',
@@ -61,7 +61,7 @@ class _CarMechanicState extends State<CarMechanic> {
       ),
     );
   }
-  */
+*/
 /*CollectionReference users = FirebaseFirestore.instance.collection('Car');
 
   TextEditingController _nameController = TextEditingController();

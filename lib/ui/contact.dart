@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 import '../contest/AppColors.dart';
@@ -15,10 +16,10 @@ class Contact extends StatelessWidget {
           child: Column(
         children: <Widget>[
           GFAccordion(
-              title: "Do you want to contact the phone number?",
+              title: 'phone'.tr,//"Do you want to contact the phone number?",
               content: "01643090684, 01756579767, 01771368759"),
           GFAccordion(
-            title: "Do you want to contact the Email?",
+            title: 'email'.tr,//"Do you want to contact the Email?",
             content:
                 "sumonatikul@gmail.com, bishwo@gmail.com, ferdausi@gmail.com",
           ),

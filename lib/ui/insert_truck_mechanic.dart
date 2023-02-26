@@ -1,68 +1,20 @@
-/*
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:third_year_project/ui/delete_car_mechanic.dart';
-import 'package:third_year_project/ui/insert_car_mechanic.dart';
+import 'package:third_year_project/ui/insert_splash.dart';
 
-import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
 
-class CarMechanic extends StatefulWidget {
-  const CarMechanic({Key? key}) : super(key: key);
+class InsertTruck extends StatefulWidget {
+  const InsertTruck({Key? key}) : super(key: key);
 
   @override
-  State<CarMechanic> createState() => _CarMechanicState();
+  State<InsertTruck> createState() => _InsertTruckState();
 }
 
-class _CarMechanicState extends State<CarMechanic> {
-
-  @override
-  Widget build(BuildContext context){
-    return SafeArea(
-
-      child: Center(
-        child: Column(
-          children: [
-            SizedBox(height: 50,),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> InsertCar()));
-              },
-              child: Text(
-                'Insert Mechanic',
-                style: TextStyle(color: Colors.white, fontSize: 18.sp),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.deep_orange,
-                elevation: 3,
-              ),
-            ),
-
-            SizedBox(height: 20,),
-
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => DeleteMechanic()));
-              },
-              child: Text(
-                'Delete Mechanic',
-                style: TextStyle(color: Colors.white, fontSize: 18.sp),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.deep_orange,
-                elevation: 3,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  */
-/*CollectionReference users = FirebaseFirestore.instance.collection('Car');
+class _InsertTruckState extends State<InsertTruck> {
+  CollectionReference users = FirebaseFirestore.instance.collection('Truck');
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
@@ -75,7 +27,7 @@ class _CarMechanicState extends State<CarMechanic> {
 
   void initState() {
     super.initState();
-    dbRef = FirebaseDatabase.instance.ref().child('Car');
+    dbRef = FirebaseDatabase.instance.ref().child('Bus');
   }
 
   @override
@@ -96,7 +48,7 @@ class _CarMechanicState extends State<CarMechanic> {
             Container(
               padding: EdgeInsets.only(left: 35, top: 70),
               child: Text(
-                'Car\n     Mechanic',
+                'Truck\n     Mechanic',
                 style: TextStyle(
                     fontFamily: 'TitanOne', fontSize: 30, color: Colors.white),
               ),
@@ -193,7 +145,7 @@ class _CarMechanicState extends State<CarMechanic> {
                     ),
                     customButton(
                       "Submit Data",
-                      () async {
+                          () async {
                         ///latitude and longitude store here
                         var latiController = _latiController.text.toString();
                         var longController = _longController.text.toString();
@@ -210,8 +162,9 @@ class _CarMechanicState extends State<CarMechanic> {
                           'long': long,
                           'Time': _timeController.text.toString(),
                         }).then(
-                          (value) => print('Added'),
+                              (value) => print('Added'),
                         );
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>InsertSplash()));
                       },
                     ),
                   ],
@@ -222,7 +175,5 @@ class _CarMechanicState extends State<CarMechanic> {
         ),
       ),
     );
-  }*//*
-
+  }
 }
-*/

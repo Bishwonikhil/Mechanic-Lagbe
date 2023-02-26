@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/login_screen.dart';
 
 import '../contest/AppColors.dart';
+import 'decision.dart';
 
 class LogSplash extends StatefulWidget {
   const LogSplash({Key? key}) : super(key: key);
@@ -15,12 +16,13 @@ class LogSplash extends StatefulWidget {
 }
 
 class _LogSplashState extends State<LogSplash> {
-
   @override
   void initState() {
     Timer(
       const Duration(seconds: 3),
-          () => Navigator.of(context).pushAndRemoveUntil(new MaterialPageRoute(builder: (context)=> new LoginScreen()), (route) => false),
+      () => Navigator.of(context).pushAndRemoveUntil(
+          new MaterialPageRoute(builder: (context) => new Decision()),
+          (route) => false),
     );
     super.initState();
   }
@@ -36,7 +38,7 @@ class _LogSplashState extends State<LogSplash> {
             Lottie.network(
                 'https://assets10.lottiefiles.com/private_files/lf30_ixykrp0i.json',
                 animate: true),
-        //Fluttertoast.showToast(msg: "Wrong password provided for that user.");
+            //Fluttertoast.showToast(msg: "Wrong password provided for that user.");
           ],
         ),
       ),

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'admin_car.dart';
+import 'insert_bike_mechanic.dart';
+import 'insert_bus_mechanic.dart';
+import 'insert_car_mechanic.dart';
+import 'insert_cng_mechanic.dart';
+import 'insert_truck_mechanic.dart';
 
 class AdminPanel extends StatefulWidget {
   const AdminPanel({Key? key}) : super(key: key);
@@ -15,7 +20,7 @@ class _AdminPanelState extends State<AdminPanel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Admin Panel',style: TextStyle(fontFamily: 'TitanOne',),),
+        title: Text('Mechanic Panel',style: TextStyle(fontFamily: 'TitanOne',),),
         backgroundColor: Colors.blueGrey,
         centerTitle: true,
 
@@ -47,7 +52,7 @@ class _AdminPanelState extends State<AdminPanel> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CarMechanic(),
+                                  builder: (context) => InsertCar(),
                                 ),
                               );
                             }
@@ -80,12 +85,12 @@ class _AdminPanelState extends State<AdminPanel> {
                         IconButton(
                           onPressed: () {
                             {
-                              /*Navigator.push(
+                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SearchTruck(),
+                                builder: (context) => InsertTruck(),
                               ),
-                            );*/
+                            );
                             }
                             ;
                           },
@@ -113,12 +118,12 @@ class _AdminPanelState extends State<AdminPanel> {
                         IconButton(
                           onPressed: () {
                             {
-                              /*Navigator.push(
+                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SearchBike(),
+                                builder: (context) => InsertBike(),
                               ),
-                            );*/
+                            );
                             };
                           },
                           icon: Lottie.network(
@@ -145,12 +150,12 @@ class _AdminPanelState extends State<AdminPanel> {
                         IconButton(
                           onPressed: () {
                             {
-                              /*Navigator.push(
+                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SearchBus(),
+                                builder: (context) => InsertBus(),
                               ),
-                            );*/
+                            );
                             };
                           },
                           icon: Lottie.network(
@@ -177,12 +182,12 @@ class _AdminPanelState extends State<AdminPanel> {
                         IconButton(
                           onPressed: () {
                             {
-                              /*Navigator.push(
+                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SearchCNG(),
+                                builder: (context) => InsertCng(),
                               ),
-                            );*/
+                            );
                             };
                           },
                           icon: Lottie.network(

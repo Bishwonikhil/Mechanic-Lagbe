@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,49 +7,87 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/Mechanic%20UI/mechanic_navigation.dart';
-import 'package:third_year_project/ui/forgot_pw.dart';
-import 'package:third_year_project/ui/registration_screen.dart';
+import 'package:third_year_project/ui/Mechanic%20UI/methods.dart';
+import 'package:third_year_project/ui/home_screen.dart';
+import 'package:third_year_project/ui/user_form.dart';
+import 'package:third_year_project/ui/verify_email.dart';
 import '../../contest/AppColors.dart';
-import '../../widget/customButton.dart';
-import '../admin_panel.dart';
+//import '../contest/AppColors.dart';
+import '../login_screen.dart';
 import '../navigation_button.dart';
-import 'mechanic_registration.dart';
-import 'methods.dart';
-// import '../contest/AppColors.dart';
-// import '../navigation_button.dart';
-// import '../widget/customButton.dart';
-// import 'admin_login.dart';
-// import 'navigation_button.dart';
+//import 'login_screen.dart';
 
-class MechanicLogin extends StatefulWidget {
+class MechanicRegistration extends StatefulWidget {
   @override
-  _MechanicLoginState createState() => _MechanicLoginState();
+  _MechanicRegistrationState createState() => _MechanicRegistrationState();
 }
 
-class _MechanicLoginState extends State<MechanicLogin> {
+class _MechanicRegistrationState extends State<MechanicRegistration> {
   TextEditingController _mechanicEmail = TextEditingController();
   TextEditingController _mechanicPassword = TextEditingController();
+  TextEditingController _mechanicNumber = TextEditingController();
+  TextEditingController _mechanicName = TextEditingController();
+  //TextEditingController _otpController = TextEditingController();
   bool _obscureText = true;
-  bool isLoading = true;
+  bool isLoading = false;
 
-  signIn() async {
+  /*void sentOTP() async {
+    try{
+      EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
+      var res = await emailAuth.sendOtp(recipientMail: _emailController.text);
+      if (res) {
+        print("OTP sent");
+      } else {
+        print('Some problems occured to sent the otp');
+      }
+    }catch(e){
+      print(e);
+    }
+  }*/
+
+  /*void verifyOTP() {
+    try{
+      EmailAuth emailAuth = EmailAuth(sessionName: "Test session");
+      var res = emailAuth.validateOtp(
+          recipientMail: _emailController.text, userOtp: _otpController.text);
+      if (res)
+        print("Hey Otp Verified sucessfully!");
+      else
+        print("Please Check your Otp!!");
+    }catch(e){
+      print(e);
+    }
+  }*/
+
+  signUp(String name,String number) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
+          .createUserWithEmailAndPassword(
           email: _mechanicEmail.text, password: _mechanicPassword.text);
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
+        FirebaseFirestore.instance.collection("User").doc(authCredential.uid).set({
+          'name': name,
+          'email': authCredential.email,
+          'number': number,
+          'uid': FirebaseAuth.instance.currentUser!.uid,
+          'imageUrl': '',
+
+        });
         Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => MechanicNavigation()));
+            context, CupertinoPageRoute(builder: (_) => VerifyEmailPage()));
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
+      /*await userCredential.user!.sendEmailVerification();
+      return userCredential;*/
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Fluttertoast.showToast(msg: "No user found for that email.");
-      } else if (e.code == 'wrong-password') {
-        Fluttertoast.showToast(msg: "Wrong password provided for that user.");
+      if (e.code == 'weak-password') {
+        Fluttertoast.showToast(msg: "The password provided is too weak.");
+      } else if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: "The account already exists for that email.");
       }
     } catch (e) {
       print(e);
@@ -61,6 +101,17 @@ class _MechanicLoginState extends State<MechanicLogin> {
       body: SafeArea(
         child: Column(
           children: [
+            /*StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+                builder: (context,snapshot){
+                if(snapshot.hasData){
+                  return VerifyEmailPage();
+                }else{
+
+                }
+                return SizedBox();
+                }
+            ),*/
             SizedBox(
               height: 150.h,
               width: ScreenUtil().screenWidth,
@@ -71,10 +122,8 @@ class _MechanicLoginState extends State<MechanicLogin> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Lottie.network(
-                        'https://assets4.lottiefiles.com/private_files/lf30_kj1v7uim.json',
-                        //height: ScreenUtil().scaleHeight,
-                        // fit: BoxFit.fill,
-                        height: 140
+                      'https://assets5.lottiefiles.com/packages/lf20_L7YrbxFm46.json',
+                      height: 140,
                     ),
                   ],
                 ),
@@ -101,12 +150,12 @@ class _MechanicLoginState extends State<MechanicLogin> {
                           height: 20.h,
                         ),
                         Text(
-                          "Welcome! Sign In",
+                          "Welcome! Sign Up",
                           style: TextStyle(
                               fontSize: 22.sp, color: AppColors.deep_orange),
                         ),
                         Text(
-                          "Glad to see you back.",
+                          "Glad to see you.",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Color(0xFFBBBBBB),
@@ -115,6 +164,48 @@ class _MechanicLoginState extends State<MechanicLogin> {
                         SizedBox(
                           height: 15.h,
                         ),
+
+                        Row(
+                          children: [
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.deep_orange,
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _mechanicName,
+                                //keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  hintText: "name",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFFBBBBBB),
+                                  ),
+                                  labelText: 'NAME',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
                         Row(
                           children: [
                             Container(
@@ -139,7 +230,7 @@ class _MechanicLoginState extends State<MechanicLogin> {
                               child: TextField(
                                 controller: _mechanicEmail,
                                 decoration: InputDecoration(
-                                  hintText: "abcd9954@gmail.com",
+                                  hintText: "abcd@gmail.com",
                                   hintStyle: TextStyle(
                                     fontSize: 14.sp,
                                     color: Color(0xFFBBBBBB),
@@ -157,6 +248,7 @@ class _MechanicLoginState extends State<MechanicLogin> {
                         SizedBox(
                           height: 10.h,
                         ),
+
                         Row(
                           children: [
                             Container(
@@ -204,42 +296,61 @@ class _MechanicLoginState extends State<MechanicLogin> {
                                         size: 20.w,
                                       ))
                                       : IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _obscureText = true;
-                                        });
-                                      },
-                                      icon: Icon(
-                                        Icons.visibility_off,
-                                        size: 20.w,
-                                      )),
+                                    onPressed: () {
+                                      setState(() {
+                                        _obscureText = true;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.visibility_off,
+                                      size: 20.w,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ],
                         ),
+
                         SizedBox(
-                          height: 15.h,
+                          height: 10.h,
                         ),
 
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ForgotPasswordPage(),
+                            Container(
+                              height: 48.h,
+                              width: 41.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.deep_orange,
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: _mechanicNumber,
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  hintText: "number",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Color(0xFFBBBBBB),
                                   ),
-                                );
-                              },
-                              child: Text(
-                                'Forgot Password?',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.deep_orange,
+                                  labelText: 'NUMBER',
+                                  labelStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColors.deep_orange,
+                                  ),
                                 ),
                               ),
                             ),
@@ -247,37 +358,48 @@ class _MechanicLoginState extends State<MechanicLogin> {
                         ),
 
                         SizedBox(
-                          height: 30.h,
+                          height: 50.h,
                         ),
                         // elevated button
-                        customButton(
-                          "Sign In",
-                              () {
-                                if (_mechanicEmail.text.isNotEmpty && _mechanicPassword.text.isNotEmpty) {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                  login1(_mechanicEmail.text, _mechanicPassword.text).then((user) {
-                                    if (user != null) {
-                                      print("Login Sucessffull");
-                                      setState(() {
-                                        isLoading = false;
-                                      });
-                                      Navigator.push(
-                                          context, MaterialPageRoute(builder: (_) => MechanicNavigation()));
-                                    } else {
-                                      print("Login Failed");
-                                      setState(() {
-                                        isLoading = false;
-                                      });
-                                    }
-                                  });
-                                } else {
-                                  print("Please fill form correctly");
-                                }
+                        SizedBox(
+                          width: 1.sw,
+                          height: 56.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_mechanicName.text.isNotEmpty &&
+                                  _mechanicEmail.text.isNotEmpty &&
+                                  _mechanicPassword.text.isNotEmpty&&_mechanicNumber.text.isNotEmpty) {
+                                setState(() {
+                                  isLoading = true;
+                                });
 
-                            //signIn();
-                          },
+                                createAccount1(_mechanicName.text, _mechanicEmail.text, _mechanicNumber.text, _mechanicPassword.text).then((user) {
+                                  if (user != null) {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    Navigator.push(
+                                        context, MaterialPageRoute(builder: (_) => VerifyEmailPage()));
+                                    print("Account created Succesfull");
+                                  } else {
+                                    print("Account created Failed");
+                                  }
+                                });
+                              } else {
+                                print("Please enter Fields");
+                              }
+                              //signUp(_mechanicName.text,_mechanicNumber.text);
+                            },
+                            child: Text(
+                              "Continue",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18.sp),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: AppColors.deep_orange,
+                              elevation: 3,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 20.h,
@@ -294,7 +416,7 @@ class _MechanicLoginState extends State<MechanicLogin> {
                             ),
                             GestureDetector(
                               child: Text(
-                                " Sign Up",
+                                " Sign In",
                                 style: TextStyle(
                                   fontSize: 13.sp,
                                   fontWeight: FontWeight.w600,
@@ -305,30 +427,10 @@ class _MechanicLoginState extends State<MechanicLogin> {
                                 Navigator.push(
                                     context,
                                     CupertinoPageRoute(
-                                        builder: (context) =>
-                                            MechanicRegistration()));
+                                        builder: (context) => LoginScreen()));
                               },
-                            ),
-                            SizedBox(width: 100,),
-                           /* GestureDetector(
-                              child: Text(
-                                " Admin",
-                                style: TextStyle(
-                                  fontSize: 13.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.deep_orange,
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            AdminLoginScreen()));
-                              },
-                            ),*/
+                            )
                           ],
-
                         )
                       ],
                     ),

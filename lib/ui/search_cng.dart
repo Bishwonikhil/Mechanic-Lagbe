@@ -12,6 +12,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:ui' as ui;
 import 'package:giff_dialog/giff_dialog.dart';
 
+import 'Mechanic UI/chat.dart';
+
 class SearchCNG extends StatefulWidget {
   const SearchCNG({Key? key}) : super(key: key);
 
@@ -140,9 +142,10 @@ class _SearchCNGState extends State<SearchCNG> {
 
                         onCancelButtonPressed: () async {
                           Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>ChatScreen()));
 
                           ///final call
-                          await bkashDialog();
+                         // await bkashDialog();
 
                           //await getAmount();
 
@@ -151,7 +154,7 @@ class _SearchCNGState extends State<SearchCNG> {
 
                       entryAnimation: EntryAnimation.topLeft,
                       buttonCancelText:Text(
-                        'Payment',
+                        'Message',
                         style: TextStyle(color: Colors.black),
                       ),
 

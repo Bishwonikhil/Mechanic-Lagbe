@@ -14,10 +14,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:ui' as ui;
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:sms_autofill/sms_autofill.dart';
+import 'package:third_year_project/ui/more_screen.dart';
 import 'package:third_year_project/widget/customButton.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../contest/AppColors.dart';
+import 'Mechanic UI/chat.dart';
 import 'navigation_button.dart';
 import 'package:quickalert/quickalert.dart';
 
@@ -165,14 +167,16 @@ class _SearchCarState extends State<SearchCar> {
                               '. My workshop location is ' +
                               element['Address'] +
                               '.',
-                          textAlign: TextAlign.justify),
+                          textAlign: TextAlign.justify
+                      ),
                       cornerRadius: 30.0,
 
                       onCancelButtonPressed: () async {
                         Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=>ChatScreen()));
 
                         ///final call
-                        await bkashDialog();
+                        //await bkashDialog();
 
                         //await getAmount();
 
@@ -180,6 +184,66 @@ class _SearchCarState extends State<SearchCar> {
 
                       //Call to the mechanic method in this poriton
                       onOkButtonPressed: () async {
+
+                        /*showDialog(
+                          context: context,
+                          builder: (_) => NetworkGiffDialog(
+                            image: Image.network(
+                              'https://cdn.dribbble.com/users/207059/screenshots/16573461/media/f154d82ff06254c9d49bd8ddda1db06f.gif',
+                              fit: BoxFit.cover,
+                            ),
+                            title: Text(
+                              'Hello I am ' + element['Name'] + '!',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            description: Text(
+                                'I am a car mechanic.I am here for to serve you. Feel free to call me ' +
+                                    element['Phone Number'] +
+                                    ' by this number between ' +
+                                    element['Time'] +
+                                    '. My workshop location is ' +
+                                    element['Address'] +
+                                    '.',
+                                textAlign: TextAlign.justify
+                            ),
+                            cornerRadius: 30.0,
+
+                            onCancelButtonPressed: () async {
+
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>ChatScreen()), (route) => false);
+                              //Navigator.push(context, MaterialPageRoute(builder: (context)=> ChatScreen()));
+                              //Navigator.pop(context);
+                              ///final call
+                              //await bkashDialog();
+
+                              //await getAmount();
+
+                            },
+
+                            //Call to the mechanic method in this poriton
+                            onOkButtonPressed: () async {
+
+                              final number = element['Phone Number'];
+                        await FlutterPhoneDirectCaller.callNumber(number);
+                            },
+
+                            entryAnimation: EntryAnimation.topLeft,
+
+                            //Payment method calling this portion
+                            buttonCancelText: Text(
+                              'Message',
+                              style: TextStyle(color: Colors.black),
+                            ),
+
+                            buttonOkText: Text(
+                              'Call',
+                              style: TextStyle(color: Colors.black),
+                            ),
+
+                            //buttonOkColor: Colors.white,
+                          ),
+                        );*/
+
                         final number = element['Phone Number'];
                         await FlutterPhoneDirectCaller.callNumber(number);
                       },
@@ -188,12 +252,12 @@ class _SearchCarState extends State<SearchCar> {
 
                       //Payment method calling this portion
                       buttonCancelText: Text(
-                        'Payment',
+                        'Message',
                         style: TextStyle(color: Colors.black),
                       ),
 
                       buttonOkText: Text(
-                        'Call',
+                        'Contact',
                         style: TextStyle(color: Colors.black),
                       ),
 
@@ -218,6 +282,7 @@ class _SearchCarState extends State<SearchCar> {
       },
     );
   }
+
 
   getMarkers() async {
     userLocationIcon =

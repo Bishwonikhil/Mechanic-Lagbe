@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/search_car.dart';
 
@@ -16,6 +17,7 @@ class _CarServiceState extends State<CarService> {
         appBar: AppBar(
           title: Text(
             'Car Services',
+
             style: TextStyle(
               fontFamily: 'TitanOne',
             ),
@@ -50,7 +52,8 @@ class _CarServiceState extends State<CarService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Tyre Servicing',
+                            //'Tyre Servicing',
+                            'tyre'.tr,
                             style:
                                 TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -95,7 +98,8 @@ class _CarServiceState extends State<CarService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Body Work',
+                            //'Body Work',
+                            'body'.tr,
                             style:
                                 TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -138,7 +142,8 @@ class _CarServiceState extends State<CarService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Car Cleaning',
+                            //'Car Cleaning',
+                            'clean'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -181,7 +186,8 @@ class _CarServiceState extends State<CarService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Diagonistics',
+                            //'Diagonistics',
+                            'diag'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),

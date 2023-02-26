@@ -8,6 +8,7 @@ import 'package:third_year_project/ui/forgot_pw.dart';
 import 'package:third_year_project/ui/registration_screen.dart';
 import '../contest/AppColors.dart';
 import '../widget/customButton.dart';
+import 'Mechanic UI/methods.dart';
 import 'admin_login.dart';
 import 'navigation_button.dart';
 
@@ -20,8 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
+  bool isLoading = false;
 
-  signIn() async {
+  Future<User?>signIn() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -29,8 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
-        Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => NavigationButton()));
+       /* Navigator.push(
+            context, CupertinoPageRoute(builder: (_) => NavigationButton()));*/
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>NavigationButton()), (route) => false);
       } else {
         Fluttertoast.showToast(msg: "Something is wrong");
       }
@@ -244,7 +247,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         customButton(
                           "Sign In",
                           () {
-                            signIn();
+                            if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              login(_emailController.text, _passwordController.text).then((user) {
+                                if (user != null) {
+                                  print("Login Sucessffull");
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  Navigator.push(
+                                      context, MaterialPageRoute(builder: (_) => NavigationButton()));
+                                } else {
+                                  print("Login Failed");
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                }
+                              });
+                            } else {
+                              print("Please fill form correctly");
+                            }
+                            //signIn();
                           },
                         ),
                         SizedBox(
@@ -278,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                             ),
                             SizedBox(width: 100,),
-                            GestureDetector(
+                            /*GestureDetector(
                               child: Text(
                                 " Admin",
                                 style: TextStyle(
@@ -294,7 +319,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         builder: (context) =>
                                             AdminLoginScreen()));
                               },
-                            ),
+                            ),*/
                           ],
 
                         )

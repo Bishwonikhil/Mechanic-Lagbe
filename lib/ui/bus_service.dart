@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:third_year_project/ui/search_bus.dart';
 
@@ -46,7 +47,8 @@ class _BusServiceState extends State<BusService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Tyre Servicing',
+                            //'Tyre Servicing',
+                            'tyre'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -91,7 +93,8 @@ class _BusServiceState extends State<BusService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Body Work',
+                            //'Body Work',
+                            'body'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -134,7 +137,8 @@ class _BusServiceState extends State<BusService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Car Cleaning',
+                            //'Car Cleaning',
+                            'clean'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
@@ -177,7 +181,8 @@ class _BusServiceState extends State<BusService> {
                         width: 200.0,
                         child: TextButton(
                           child: Text(
-                            'Diagonistics',
+                            //'Diagonistics',
+                            'diag'.tr,
                             style:
                             TextStyle(fontFamily: 'TitanOne', fontSize: 18,color: Colors.black),
                           ),
